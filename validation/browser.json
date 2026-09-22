@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "reports": [
+    {
+      "report": "pant_fail_ep0",
+      "slider": true,
+      "downloads": true,
+      "mobile": true,
+      "passed": true
+    },
+    {
+      "report": "offline_2000",
+      "slider": true,
+      "downloads": true,
+      "mobile": true,
+      "passed": true
+    }
+  ],
+  "javascript_errors": []
+}

@@ -1,0 +1,22 @@
+{
+  "python": "3.10.12 (main, Aug 15 2025, 14:32:43) [GCC 11.4.0]",
+  "platform": "Linux-5.14.0-284.25.1.el9_2.x86_64-x86_64-with-glibc2.35",
+  "torch": "2.8.0+cu128",
+  "numpy": "1.26.4",
+  "cuda_runtime": "12.8",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 4090 D",
+  "system_site_packages": false,
+  "install": "Fresh isolated venv, installed from cached public wheels; editable package from release checkout",
+  "packages": {
+    "torch": "2.8.0+cu128",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "pyarrow": "20.0.0",
+    "matplotlib": "3.9.4",
+    "av": "13.1.0",
+    "Pillow": "12.3.0",
+    "einops": "0.8.1",
+    "scipy": "1.15.3"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "description": "Real frozen inputs and independent historical predictions; no synthetic data. Normal/OOD fixtures use already-normalized 76-D observations; pant fixtures and offline fixture use raw state14 + visual48.",
+  "episodes": [
+    {
+      "id": "data_open_long_sleeve_0806_lerobot_dc230203_ep000043",
+      "mode": "online",
+      "split": "validation",
+      "input": "examples/episodes/data_open_long_sleeve_0806_lerobot_dc230203_ep000043.npz",
+      "expected": "examples/expected/data_open_long_sleeve_0806_lerobot_dc230203_ep000043.npz",
+      "frames": 950,
+      "state_layout": "joints12_grippers2",
+      "fps": 30,
+      "episode_seed": 110947975,
+      "first_alarm_frame": null,
+      "alarm_frames": 0
+    },
+    {
+      "id": "test_lwy_ep000000",
+      "mode": "online",
+      "split": "ood",
+      "input": "examples/episodes/test_lwy_ep000000.npz",
+      "expected": "examples/expected/test_lwy_ep000000.npz",
+      "frames": 1485,
+      "state_layout": "joints12_grippers2",
+      "fps": 30,
+      "episode_seed": 56292195,
+      "first_alarm_frame": 92,
+      "alarm_frames": 23
+    },
+    {
+      "id": "test_lwy_ep000001",
+      "mode": "online",
+      "split": "ood",
+      "input": "examples/episodes/test_lwy_ep000001.npz",
+      "expected": "examples/expected/test_lwy_ep000001.npz",
+      "frames": 1308,
+      "state_layout": "joints12_grippers2",
+      "fps": 30,
+      "episode_seed": 55214742,
+      "first_alarm_frame": 86,
+      "alarm_frames": 9
+    },
+    {
+      "id": "test_lwy_ep000002",
+      "mode": "online",
+      "split": "ood",
+      "input": "examples/episodes/test_lwy_ep000002.npz",
+      "expected": "examples/expected/test_lwy_ep000002.npz",
+      "frames": 3225,
+      "state_layout": "joints12_grippers2",
+      "fps": 30,
+      "episode_seed": 37759145,
+      "first_alarm_frame": 80,
+      "alarm_frames": 6
+    },
+    {
+      "id": "pant_fail_ep000000",
+      "mode": "online",
+      "split": "external_failure",
+      "input": "examples/episodes/pant_fail_ep000000.npz",
+      "expected": "examples/expected/pant_fail_ep000000.npz",
+      "frames": 2018,
+      "state_layout": "joints12_grippers2",
+      "fps": 30,
+      "episode_seed": 0,
+      "first_alarm_frame": 303,
+      "alarm_frames": 1278
+    },
+    {
+      "id": "pant_fail_ep000001",
+      "mode": "online",
+      "split": "external_failure",
+      "input": "examples/episodes/pant_fail_ep000001.npz",
+      "expected": "examples/expected/pant_fail_ep000001.npz",
+      "frames": 2164,
+      "state_layout": "joints12_grippers2",
+      "fps": 30,
+      "episode_seed": 0,
+      "first_alarm_frame": 545,
+      "alarm_frames": 1089
+    },
+    {
+      "id": "pant_fail_ep000002",
+      "mode": "online",
+      "split": "external_failure",
+      "input": "examples/episodes/pant_fail_ep000002.npz",
+      "expected": "examples/expected/pant_fail_ep000002.npz",
+      "frames": 681,
+      "state_layout": "joints12_grippers2",
+      "fps": 30,
+      "episode_seed": 0,
+      "first_alarm_frame": 188,
+      "alarm_frames": 436
+    },
+    {
+      "id": "pant_fail_ep000003",
+      "mode": "online",
+      "split": "external_failure",
+      "input": "examples/episodes/pant_fail_ep000003.npz",
+      "expected": "examples/expected/pant_fail_ep000003.npz",
+      "frames": 553,
+      "state_layout": "joints12_grippers2",
+      "fps": 30,
+      "episode_seed": 0,
+      "first_alarm_frame": 261,
+      "alarm_frames": 292
+    },
+    {
+      "id": "offline_pants_0820_ep000003",
+      "mode": "offline",
+      "input": "examples/episodes/offline_pants_0820_ep000003.npz",
+      "expected": "examples/expected/offline_pants_0820_ep000003.npz",
+      "frames": 1164,
+      "state_layout": "joints12_grippers2",
+      "fps": 30
+    }
+  ]
+}

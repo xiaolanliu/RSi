@@ -1,0 +1,23 @@
+{
+  "original_source": true,
+  "source_directory": "COMPILE/compile (original offline implementation)",
+  "input": "Original LeRobot parquet + original Wan visual cache",
+  "checkpoint_sha256": "0f199269ac8006e75794fbcfd38876f03ed15ac78edcc335157d247639b90fcb",
+  "frames": 1164,
+  "cpu_boundaries": [
+    238,
+    423,
+    699,
+    899,
+    1165
+  ],
+  "original_gpu_boundaries": [
+    238,
+    423,
+    699,
+    899,
+    1165
+  ],
+  "max_cpu_gpu_probability_difference": 0.0011491775512695312,
+  "reason": "Original offline report used CUDA cuDNN TF32; CPU FP32 uses a separate independently computed original-source reference. Online references remain shared."
+}

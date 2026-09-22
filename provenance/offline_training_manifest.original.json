@@ -1,0 +1,974 @@
+{
+  "data_parent": "/data/dataset/laundry_fold_dataset (pi05_0904_fold_any repo_id list)",
+  "cache_root": "/data/users/liuweiyuan/Code/COMPILE/cache",
+  "camera_key": "global_image",
+  "feature_dim": 48,
+  "roots": [
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_fold_long_sleeve_0730_lerobot",
+      "dataset_name": "data_fold_long_sleeve_0730_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_long_sleeve_0730_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 23,
+      "cached_files": 23,
+      "cached_frames": 44308,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_fold_long_sleeve_0731_lerobot",
+      "dataset_name": "data_fold_long_sleeve_0731_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_long_sleeve_0731_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 52,
+      "cached_files": 52,
+      "cached_frames": 89540,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_fold_long_sleeve_0812_lerobot",
+      "dataset_name": "data_fold_long_sleeve_0812_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_long_sleeve_0812_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 83,
+      "cached_files": 83,
+      "cached_frames": 120768,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_fold_long_sleeve_0828_lerobot",
+      "dataset_name": "data_fold_long_sleeve_0828_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_long_sleeve_0828_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 34590,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0731_lerobot",
+      "dataset_name": "data_open_long_sleeve_0731_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0731_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 36,
+      "cached_files": 36,
+      "cached_frames": 42301,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0803_lerobot",
+      "dataset_name": "data_open_long_sleeve_0803_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0803_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 87,
+      "cached_files": 87,
+      "cached_frames": 86661,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0804_2_lerobot",
+      "dataset_name": "data_open_long_sleeve_0804_2_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0804_2_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 71,
+      "cached_files": 71,
+      "cached_frames": 63380,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0804_lerobot",
+      "dataset_name": "data_open_long_sleeve_0804_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0804_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 40,
+      "cached_files": 40,
+      "cached_frames": 66202,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0805_lerobot",
+      "dataset_name": "data_open_long_sleeve_0805_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0805_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 9,
+      "cached_files": 9,
+      "cached_frames": 9483,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0806_lerobot",
+      "dataset_name": "data_open_long_sleeve_0806_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0806_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 103,
+      "cached_files": 103,
+      "cached_frames": 80187,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0807_lerobot",
+      "dataset_name": "data_open_long_sleeve_0807_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0807_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 101,
+      "cached_files": 101,
+      "cached_frames": 77376,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0818_lerobot",
+      "dataset_name": "data_fold_pant_0818_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0818_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 56,
+      "cached_files": 56,
+      "cached_frames": 68466,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0819_lerobot",
+      "dataset_name": "data_fold_pant_0819_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0819_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 35602,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0820_lerobot",
+      "dataset_name": "data_fold_pant_0820_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0820_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 88,
+      "cached_files": 88,
+      "cached_frames": 90102,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0821_lerobot",
+      "dataset_name": "data_fold_pant_0821_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0821_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 40,
+      "cached_files": 40,
+      "cached_frames": 39684,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0822_lerobot",
+      "dataset_name": "data_fold_pant_0822_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0822_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 54599,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0823_lerobot",
+      "dataset_name": "data_fold_pant_0823_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0823_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 52864,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0824_lerobot",
+      "dataset_name": "data_fold_pant_0824_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0824_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 53812,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0827_lerobot",
+      "dataset_name": "data_fold_pant_0827_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0827_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 53,
+      "cached_files": 53,
+      "cached_frames": 45788,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0828_lerobot",
+      "dataset_name": "data_fold_pant_0828_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0828_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 25039,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0829_lerobot",
+      "dataset_name": "data_fold_pant_0829_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0829_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 96,
+      "cached_files": 96,
+      "cached_frames": 90503,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06252_lerobot",
+      "dataset_name": "data_fold_cloth_06252_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06252_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 16,
+      "cached_files": 16,
+      "cached_frames": 22950,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06253_lerobot",
+      "dataset_name": "data_fold_cloth_06253_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06253_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 46107,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0625_lerobot",
+      "dataset_name": "data_fold_cloth_0625_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0625_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 40,
+      "cached_files": 40,
+      "cached_frames": 62306,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0626_lerobot",
+      "dataset_name": "data_fold_cloth_0626_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0626_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 46,
+      "cached_files": 46,
+      "cached_frames": 65728,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0627_lerobot",
+      "dataset_name": "data_fold_cloth_0627_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0627_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 70,
+      "cached_files": 70,
+      "cached_frames": 81302,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06292_lerobot",
+      "dataset_name": "data_fold_cloth_06292_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06292_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 35,
+      "cached_files": 35,
+      "cached_frames": 51685,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06294_lerobot",
+      "dataset_name": "data_fold_cloth_06294_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06294_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 20,
+      "cached_files": 20,
+      "cached_frames": 16842,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06302_lerobot",
+      "dataset_name": "data_fold_cloth_06302_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06302_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 23,
+      "cached_files": 23,
+      "cached_frames": 20061,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06303_lerobot",
+      "dataset_name": "data_fold_cloth_06303_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06303_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 22,
+      "cached_files": 22,
+      "cached_frames": 24498,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0630_lerobot",
+      "dataset_name": "data_fold_cloth_0630_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0630_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 80,
+      "cached_files": 80,
+      "cached_frames": 98663,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0701_lerobot",
+      "dataset_name": "data_fold_cloth_0701_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0701_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 100,
+      "cached_files": 100,
+      "cached_frames": 115921,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07022_lerobot",
+      "dataset_name": "data_fold_cloth_07022_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07022_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 37639,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0702_lerobot",
+      "dataset_name": "data_fold_cloth_0702_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0702_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 61,
+      "cached_files": 61,
+      "cached_frames": 75609,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0703_lerobot",
+      "dataset_name": "data_fold_cloth_0703_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0703_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 85,
+      "cached_files": 85,
+      "cached_frames": 101784,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07062_lerobot",
+      "dataset_name": "data_fold_cloth_07062_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07062_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 80,
+      "cached_files": 80,
+      "cached_frames": 104417,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07072_lerobot",
+      "dataset_name": "data_fold_cloth_07072_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07072_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 82,
+      "cached_files": 82,
+      "cached_frames": 107115,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07082_lerobot",
+      "dataset_name": "data_fold_cloth_07082_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07082_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 49440,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0708_lerobot",
+      "dataset_name": "data_fold_cloth_0708_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0708_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 74,
+      "cached_files": 74,
+      "cached_frames": 95010,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07092_lerobot",
+      "dataset_name": "data_fold_cloth_07092_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07092_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 65,
+      "cached_files": 65,
+      "cached_frames": 67103,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0709_lerobot",
+      "dataset_name": "data_fold_cloth_0709_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0709_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 40,
+      "cached_files": 40,
+      "cached_frames": 54503,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0710_lerobot",
+      "dataset_name": "data_fold_cloth_0710_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0710_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 90,
+      "cached_files": 90,
+      "cached_frames": 124625,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0711_lerobot",
+      "dataset_name": "data_fold_cloth_0711_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0711_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 119,
+      "cached_files": 119,
+      "cached_frames": 144911,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07132_lerobot",
+      "dataset_name": "data_fold_cloth_07132_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07132_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 50978,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0713_lerobot",
+      "dataset_name": "data_fold_cloth_0713_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0713_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 80,
+      "cached_files": 80,
+      "cached_frames": 55307,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0714_lerobot",
+      "dataset_name": "data_fold_cloth_0714_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0714_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 100,
+      "cached_files": 100,
+      "cached_frames": 109454,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0722_lerobot",
+      "dataset_name": "data_fold_cloth_0722_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0722_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 80,
+      "cached_files": 80,
+      "cached_frames": 115511,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0723_lerobot",
+      "dataset_name": "data_fold_cloth_0723_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0723_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 38604,
+      "valid": true
+    }
+  ],
+  "all_roots": [
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_fold_long_sleeve_0730_lerobot",
+      "dataset_name": "data_fold_long_sleeve_0730_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_long_sleeve_0730_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 23,
+      "cached_files": 23,
+      "cached_frames": 44308,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_fold_long_sleeve_0731_lerobot",
+      "dataset_name": "data_fold_long_sleeve_0731_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_long_sleeve_0731_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 52,
+      "cached_files": 52,
+      "cached_frames": 89540,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_fold_long_sleeve_0812_lerobot",
+      "dataset_name": "data_fold_long_sleeve_0812_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_long_sleeve_0812_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 83,
+      "cached_files": 83,
+      "cached_frames": 120768,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_fold_long_sleeve_0828_lerobot",
+      "dataset_name": "data_fold_long_sleeve_0828_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_long_sleeve_0828_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 34590,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0731_lerobot",
+      "dataset_name": "data_open_long_sleeve_0731_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0731_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 36,
+      "cached_files": 36,
+      "cached_frames": 42301,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0803_lerobot",
+      "dataset_name": "data_open_long_sleeve_0803_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0803_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 87,
+      "cached_files": 87,
+      "cached_frames": 86661,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0804_2_lerobot",
+      "dataset_name": "data_open_long_sleeve_0804_2_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0804_2_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 71,
+      "cached_files": 71,
+      "cached_frames": 63380,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0804_lerobot",
+      "dataset_name": "data_open_long_sleeve_0804_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0804_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 40,
+      "cached_files": 40,
+      "cached_frames": 66202,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0805_lerobot",
+      "dataset_name": "data_open_long_sleeve_0805_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0805_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 9,
+      "cached_files": 9,
+      "cached_frames": 9483,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0806_lerobot",
+      "dataset_name": "data_open_long_sleeve_0806_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0806_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 103,
+      "cached_files": 103,
+      "cached_frames": 80187,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_long_sleeve/data_open_long_sleeve_0807_lerobot",
+      "dataset_name": "data_open_long_sleeve_0807_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_open_long_sleeve_0807_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 101,
+      "cached_files": 101,
+      "cached_frames": 77376,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0818_lerobot",
+      "dataset_name": "data_fold_pant_0818_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0818_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 56,
+      "cached_files": 56,
+      "cached_frames": 68466,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0819_lerobot",
+      "dataset_name": "data_fold_pant_0819_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0819_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 35602,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0820_lerobot",
+      "dataset_name": "data_fold_pant_0820_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0820_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 88,
+      "cached_files": 88,
+      "cached_frames": 90102,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0821_lerobot",
+      "dataset_name": "data_fold_pant_0821_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0821_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 40,
+      "cached_files": 40,
+      "cached_frames": 39684,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0822_lerobot",
+      "dataset_name": "data_fold_pant_0822_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0822_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 54599,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0823_lerobot",
+      "dataset_name": "data_fold_pant_0823_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0823_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 52864,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0824_lerobot",
+      "dataset_name": "data_fold_pant_0824_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0824_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 53812,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0827_lerobot",
+      "dataset_name": "data_fold_pant_0827_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0827_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 53,
+      "cached_files": 53,
+      "cached_frames": 45788,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0828_lerobot",
+      "dataset_name": "data_fold_pant_0828_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0828_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 25039,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_pants/data_fold_pant_0829_lerobot",
+      "dataset_name": "data_fold_pant_0829_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/cache/cache/data_fold_pant_0829_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 96,
+      "cached_files": 96,
+      "cached_frames": 90503,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06252_lerobot",
+      "dataset_name": "data_fold_cloth_06252_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06252_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 16,
+      "cached_files": 16,
+      "cached_frames": 22950,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06253_lerobot",
+      "dataset_name": "data_fold_cloth_06253_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06253_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 46107,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0625_lerobot",
+      "dataset_name": "data_fold_cloth_0625_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0625_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 40,
+      "cached_files": 40,
+      "cached_frames": 62306,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0626_lerobot",
+      "dataset_name": "data_fold_cloth_0626_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0626_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 46,
+      "cached_files": 46,
+      "cached_frames": 65728,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0627_lerobot",
+      "dataset_name": "data_fold_cloth_0627_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0627_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 70,
+      "cached_files": 70,
+      "cached_frames": 81302,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06292_lerobot",
+      "dataset_name": "data_fold_cloth_06292_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06292_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 35,
+      "cached_files": 35,
+      "cached_frames": 51685,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06294_lerobot",
+      "dataset_name": "data_fold_cloth_06294_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06294_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 20,
+      "cached_files": 20,
+      "cached_frames": 16842,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06302_lerobot",
+      "dataset_name": "data_fold_cloth_06302_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06302_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 23,
+      "cached_files": 23,
+      "cached_frames": 20061,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_06303_lerobot",
+      "dataset_name": "data_fold_cloth_06303_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_06303_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 22,
+      "cached_files": 22,
+      "cached_frames": 24498,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0630_lerobot",
+      "dataset_name": "data_fold_cloth_0630_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0630_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 80,
+      "cached_files": 80,
+      "cached_frames": 98663,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0701_lerobot",
+      "dataset_name": "data_fold_cloth_0701_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0701_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 100,
+      "cached_files": 100,
+      "cached_frames": 115921,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07022_lerobot",
+      "dataset_name": "data_fold_cloth_07022_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07022_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 37639,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0702_lerobot",
+      "dataset_name": "data_fold_cloth_0702_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0702_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 61,
+      "cached_files": 61,
+      "cached_frames": 75609,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0703_lerobot",
+      "dataset_name": "data_fold_cloth_0703_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0703_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 85,
+      "cached_files": 85,
+      "cached_frames": 101784,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07062_lerobot",
+      "dataset_name": "data_fold_cloth_07062_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07062_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 80,
+      "cached_files": 80,
+      "cached_frames": 104417,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07072_lerobot",
+      "dataset_name": "data_fold_cloth_07072_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07072_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 82,
+      "cached_files": 82,
+      "cached_frames": 107115,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07082_lerobot",
+      "dataset_name": "data_fold_cloth_07082_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07082_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 49440,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0708_lerobot",
+      "dataset_name": "data_fold_cloth_0708_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0708_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 74,
+      "cached_files": 74,
+      "cached_frames": 95010,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07092_lerobot",
+      "dataset_name": "data_fold_cloth_07092_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07092_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 65,
+      "cached_files": 65,
+      "cached_frames": 67103,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0709_lerobot",
+      "dataset_name": "data_fold_cloth_0709_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0709_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 40,
+      "cached_files": 40,
+      "cached_frames": 54503,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0710_lerobot",
+      "dataset_name": "data_fold_cloth_0710_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0710_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 90,
+      "cached_files": 90,
+      "cached_frames": 124625,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0711_lerobot",
+      "dataset_name": "data_fold_cloth_0711_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0711_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 119,
+      "cached_files": 119,
+      "cached_frames": 144911,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_07132_lerobot",
+      "dataset_name": "data_fold_cloth_07132_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_07132_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 50,
+      "cached_files": 50,
+      "cached_frames": 50978,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0713_lerobot",
+      "dataset_name": "data_fold_cloth_0713_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0713_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 80,
+      "cached_files": 80,
+      "cached_frames": 55307,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0714_lerobot",
+      "dataset_name": "data_fold_cloth_0714_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0714_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 100,
+      "cached_files": 100,
+      "cached_frames": 109454,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0722_lerobot",
+      "dataset_name": "data_fold_cloth_0722_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0722_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 80,
+      "cached_files": 80,
+      "cached_frames": 115511,
+      "valid": true
+    },
+    {
+      "data_root": "/data/dataset/laundry_fold_dataset/fold_short_sleeve/data_fold_cloth_0723_lerobot",
+      "dataset_name": "data_fold_cloth_0723_lerobot",
+      "visual_cache_dir": "/data/users/liuweiyuan/Code/COMPILE/runs/fold_short_sleeve_stride1_0907/visual_cache_global_s1/cache/data_fold_cloth_0723_lerobot/global_image",
+      "camera_key": "global_image",
+      "episodes": 30,
+      "cached_files": 30,
+      "cached_frames": 38604,
+      "valid": true
+    }
+  ],
+  "incomplete": [],
+  "episodes": 2796,
+  "frames": 3209328,
+  "complete": true
+}

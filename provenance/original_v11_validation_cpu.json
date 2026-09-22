@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "device": "cpu",
+  "bundle_sha256": "ada56140c49fca0eec050a21a47f662a6d091f2500cbf75521566293095e555c",
+  "frames": 12384,
+  "records": [
+    {
+      "record": "data_open_long_sleeve_0806_lerobot_dc230203_ep000043.pt",
+      "frames": 950,
+      "max_risk_difference": 7.152557373046875e-06,
+      "passed": true
+    },
+    {
+      "record": "data_failur_lerobot_bb588e0c_ep000000.pt",
+      "frames": 1485,
+      "max_risk_difference": 5.340576171875e-05,
+      "passed": true
+    },
+    {
+      "record": "data_failur_lerobot_bb588e0c_ep000001.pt",
+      "frames": 1308,
+      "max_risk_difference": 3.170967102050781e-05,
+      "passed": true
+    },
+    {
+      "record": "data_failur_lerobot_bb588e0c_ep000002.pt",
+      "frames": 3225,
+      "max_risk_difference": 1.8835067749023438e-05,
+      "passed": true
+    },
+    {
+      "record": "pant_fail_ep000000",
+      "frames": 2018,
+      "max_risk_difference": 4.76837158203125e-06,
+      "passed": true
+    },
+    {
+      "record": "pant_fail_ep000001",
+      "frames": 2164,
+      "max_risk_difference": 3.3974647521972656e-06,
+      "passed": true
+    },
+    {
+      "record": "pant_fail_ep000002",
+      "frames": 681,
+      "max_risk_difference": 3.337860107421875e-06,
+      "passed": true
+    },
+    {
+      "record": "pant_fail_ep000003",
+      "frames": 553,
+      "max_risk_difference": 2.384185791015625e-06,
+      "passed": true
+    }
+  ],
+  "checks": [
+    "three signals only; dropout readout forbidden",
+    "full-trajectory cached vs streaming alarms",
+    "raw external state/visual input",
+    "reset prefix equality",
+    "no stage backtrack or skip",
+    "legacy loading"
+  ]
+}

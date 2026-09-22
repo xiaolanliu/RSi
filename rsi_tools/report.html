@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RSi trajectory replay</title>
+<style>
+*{box-sizing:border-box}body{font:16px system-ui,sans-serif;background:#f4f6fa;color:#172131;max-width:1150px;margin:auto;padding:24px;overflow-wrap:anywhere}h1{font-size:26px}section{background:white;padding:18px;border-radius:12px;margin:16px 0;border:1px solid #dbe2eb}canvas{width:100%;height:230px;display:block}input{width:100%;margin:0;display:block}pre{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6}a{color:#185cbd}.legend{color:#586779;font-size:14px}.value{font-variant-numeric:tabular-nums}
+</style>
+<h1 id="title"></h1><p>完整轨迹回放 · 30 FPS · <a href="predictions.csv" download>逐帧 CSV</a> · <a href="predictions.npz" download>NumPy 输出</a></p>
+<section><label for="frame">查看帧</label><input id="frame" type="range" min="0" step="1" value="0"><pre id="current" class="value"></pre></section>
+<section><h2>阶段概率</h2><p class="legend">P1 蓝 · P2 青 · P3 绿 · P4 橙 · P5 紫；这些阶段没有人工语义标签。</p><canvas id="phase"></canvas></section>
+<section id="riskSection"><h2>持续 OOD 分数</h2><p class="legend">红色区域为报警帧，虚线为校准参考阈值。分数和分位数均不是失败概率。</p><canvas id="risk"></canvas></section>
+<section><h2>回放摘要</h2><pre id="summary"></pre><p>此页展示已缓存视觉特征的模型回放；不包含原始视频，未执行机器人控制。</p></section>
+<script id="payload" type="application/json">__PAYLOAD__</script>
+<script>
+const data=JSON.parse(document.querySelector('#payload').textContent), slider=document.querySelector('#frame');
+document.querySelector('#title').textContent=data.summary.episode;
+document.querySelector('#summary').textContent=JSON.stringify(data.summary,null,2);
+slider.max=data.times.length-1;
+const colors=['#2263c7','#087e93','#2e854b','#c07606','#8052bc'];
+function plot(id,series,maxValue,threshold){
+ const c=document.getElementById(id),r=c.getBoundingClientRect(),d=window.devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;const ctx=c.getContext('2d');ctx.scale(d,d);
+ const w=r.width,h=r.height,p=30,X=i=>p+i/(data.times.length-1)*(w-2*p),Y=v=>h-p-v/maxValue*(h-2*p);
+ ctx.strokeStyle='#ced6e0';ctx.beginPath();ctx.moveTo(p,8);ctx.lineTo(p,h-p);ctx.lineTo(w-p,h-p);ctx.stroke();ctx.fillStyle='#526174';ctx.font='12px system-ui';ctx.fillText(maxValue.toFixed(1),0,16);ctx.fillText('0',12,h-p+2);ctx.fillText(data.times[0].toFixed(1)+'s',p,h-7);ctx.fillText(data.times.at(-1).toFixed(1)+'s',w-65,h-7);
+ if(id==='risk'&&data.alarm){ctx.fillStyle='#ffebec';for(let i=0;i<data.alarm.length;i++)if(data.alarm[i])ctx.fillRect(X(i),8,Math.max(1,(w-2*p)/(data.alarm.length-1)),h-p-8);}
+ if(threshold!==undefined){ctx.setLineDash([5,5]);ctx.strokeStyle='#8c2336';ctx.beginPath();ctx.moveTo(p,Y(threshold));ctx.lineTo(w-p,Y(threshold));ctx.stroke();ctx.setLineDash([]);}
+ series.forEach((s,j)=>{ctx.strokeStyle=colors[j%colors.length];ctx.lineWidth=1.5;ctx.beginPath();s.forEach((v,i)=>{if(i===0)ctx.moveTo(X(i),Y(v));else ctx.lineTo(X(i),Y(v));});ctx.stroke();});
+ ctx.strokeStyle='#202939';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(X(+slider.value),8);ctx.lineTo(X(+slider.value),h-p);ctx.stroke();
+}
+function render(){let i=+slider.value;let text=`帧 ${i} / ${data.times.length-1} · ${data.times[i].toFixed(3)} 秒\n阶段概率 ${data.phase_probs[i].map(v=>v.toFixed(4)).join(' / ')}`;
+ if(data.alarm){text+=`\n确认阶段 ${data.confirmed_phase[i]} · 允许阶段 ${data.accepted_phase[i]} · 报警 ${data.alarm[i]?'是':'否'}\n持续分数 ${data.risk_score[i].toFixed(6)} · 正常校准分位 ${(100*data.risk_percentile[i]).toFixed(2)}%\n投影距离 / 重复证据 / LINe 能量：${data.evidence[i].map(v=>v.toFixed(5)).join(' / ')}`;plot('risk',[data.risk_score],Math.max(data.threshold*1.2,...data.risk_score),data.threshold);}
+ else document.querySelector('#riskSection').hidden=true;
+ document.querySelector('#current').textContent=text;plot('phase',[0,1,2,3,4].map(k=>data.phase_probs.map(row=>row[k])),1);
+}
+slider.addEventListener('input',render);window.addEventListener('resize',render);render();
+</script></html>

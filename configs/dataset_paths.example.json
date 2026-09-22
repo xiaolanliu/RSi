@@ -1,0 +1,198 @@
+{
+  "data_fold_long_sleeve_0730_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_long_sleeve_0730_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_long_sleeve_0730_lerobot/global_image"
+  },
+  "data_fold_long_sleeve_0731_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_long_sleeve_0731_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_long_sleeve_0731_lerobot/global_image"
+  },
+  "data_fold_long_sleeve_0812_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_long_sleeve_0812_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_long_sleeve_0812_lerobot/global_image"
+  },
+  "data_fold_long_sleeve_0828_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_long_sleeve_0828_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_long_sleeve_0828_lerobot/global_image"
+  },
+  "data_open_long_sleeve_0731_lerobot": {
+    "data_root": "/YOUR/DATA/data_open_long_sleeve_0731_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_open_long_sleeve_0731_lerobot/global_image"
+  },
+  "data_open_long_sleeve_0803_lerobot": {
+    "data_root": "/YOUR/DATA/data_open_long_sleeve_0803_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_open_long_sleeve_0803_lerobot/global_image"
+  },
+  "data_open_long_sleeve_0804_2_lerobot": {
+    "data_root": "/YOUR/DATA/data_open_long_sleeve_0804_2_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_open_long_sleeve_0804_2_lerobot/global_image"
+  },
+  "data_open_long_sleeve_0804_lerobot": {
+    "data_root": "/YOUR/DATA/data_open_long_sleeve_0804_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_open_long_sleeve_0804_lerobot/global_image"
+  },
+  "data_open_long_sleeve_0805_lerobot": {
+    "data_root": "/YOUR/DATA/data_open_long_sleeve_0805_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_open_long_sleeve_0805_lerobot/global_image"
+  },
+  "data_open_long_sleeve_0806_lerobot": {
+    "data_root": "/YOUR/DATA/data_open_long_sleeve_0806_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_open_long_sleeve_0806_lerobot/global_image"
+  },
+  "data_open_long_sleeve_0807_lerobot": {
+    "data_root": "/YOUR/DATA/data_open_long_sleeve_0807_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_open_long_sleeve_0807_lerobot/global_image"
+  },
+  "data_fold_pant_0818_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0818_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0818_lerobot/global_image"
+  },
+  "data_fold_pant_0819_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0819_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0819_lerobot/global_image"
+  },
+  "data_fold_pant_0820_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0820_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0820_lerobot/global_image"
+  },
+  "data_fold_pant_0821_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0821_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0821_lerobot/global_image"
+  },
+  "data_fold_pant_0822_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0822_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0822_lerobot/global_image"
+  },
+  "data_fold_pant_0823_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0823_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0823_lerobot/global_image"
+  },
+  "data_fold_pant_0824_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0824_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0824_lerobot/global_image"
+  },
+  "data_fold_pant_0827_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0827_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0827_lerobot/global_image"
+  },
+  "data_fold_pant_0828_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0828_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0828_lerobot/global_image"
+  },
+  "data_fold_pant_0829_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_pant_0829_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_pant_0829_lerobot/global_image"
+  },
+  "data_fold_cloth_06252_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_06252_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_06252_lerobot/global_image"
+  },
+  "data_fold_cloth_06253_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_06253_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_06253_lerobot/global_image"
+  },
+  "data_fold_cloth_0625_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0625_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0625_lerobot/global_image"
+  },
+  "data_fold_cloth_0626_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0626_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0626_lerobot/global_image"
+  },
+  "data_fold_cloth_0627_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0627_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0627_lerobot/global_image"
+  },
+  "data_fold_cloth_06292_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_06292_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_06292_lerobot/global_image"
+  },
+  "data_fold_cloth_06294_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_06294_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_06294_lerobot/global_image"
+  },
+  "data_fold_cloth_06302_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_06302_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_06302_lerobot/global_image"
+  },
+  "data_fold_cloth_06303_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_06303_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_06303_lerobot/global_image"
+  },
+  "data_fold_cloth_0630_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0630_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0630_lerobot/global_image"
+  },
+  "data_fold_cloth_0701_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0701_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0701_lerobot/global_image"
+  },
+  "data_fold_cloth_07022_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_07022_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_07022_lerobot/global_image"
+  },
+  "data_fold_cloth_0702_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0702_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0702_lerobot/global_image"
+  },
+  "data_fold_cloth_0703_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0703_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0703_lerobot/global_image"
+  },
+  "data_fold_cloth_07062_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_07062_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_07062_lerobot/global_image"
+  },
+  "data_fold_cloth_07072_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_07072_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_07072_lerobot/global_image"
+  },
+  "data_fold_cloth_07082_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_07082_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_07082_lerobot/global_image"
+  },
+  "data_fold_cloth_0708_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0708_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0708_lerobot/global_image"
+  },
+  "data_fold_cloth_07092_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_07092_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_07092_lerobot/global_image"
+  },
+  "data_fold_cloth_0709_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0709_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0709_lerobot/global_image"
+  },
+  "data_fold_cloth_0710_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0710_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0710_lerobot/global_image"
+  },
+  "data_fold_cloth_0711_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0711_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0711_lerobot/global_image"
+  },
+  "data_fold_cloth_07132_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_07132_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_07132_lerobot/global_image"
+  },
+  "data_fold_cloth_0713_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0713_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0713_lerobot/global_image"
+  },
+  "data_fold_cloth_0714_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0714_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0714_lerobot/global_image"
+  },
+  "data_fold_cloth_0722_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0722_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0722_lerobot/global_image"
+  },
+  "data_fold_cloth_0723_lerobot": {
+    "data_root": "/YOUR/DATA/data_fold_cloth_0723_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_fold_cloth_0723_lerobot/global_image"
+  },
+  "data_failur_lerobot": {
+    "data_root": "/YOUR/DATA/data_failur_lerobot",
+    "visual_cache_dir": "/YOUR/CACHE/data_failur_lerobot/global_image"
+  }
+}

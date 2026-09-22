@@ -1,0 +1,28 @@
+{
+  "epoch": 2000,
+  "boundary_kl_weight": 0.01,
+  "poisson_rate": 229.56566523605153,
+  "adaptive_poisson_rate": true,
+  "train": {
+    "loss": 0.1812868784781473,
+    "reconstruction_loss": 0.18034973561155046,
+    "kl_z": 1.0298451391802393e-06,
+    "kl_b": 0.08991465338058803,
+    "weighted_kl_z": 1.0298451391802393e-06,
+    "weighted_kl_b": 0.0008991465338058805,
+    "segment_balance": 0.0007393257904949555,
+    "action_mae": 0.002819452462145662,
+    "num_batches": 282.0
+  },
+  "validation": {
+    "loss": 0.7083660634810274,
+    "reconstruction_loss": 0.1904704233648425,
+    "kl_z": 8.507811181020357e-07,
+    "kl_b": 51.76561089602384,
+    "weighted_kl_z": 8.507811181020357e-07,
+    "weighted_kl_b": 0.5176561089602383,
+    "segment_balance": 0.004773941686003541,
+    "action_mae": 0.002862038528546691,
+    "num_batches": 70.0
+  }
+}

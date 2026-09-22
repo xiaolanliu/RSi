@@ -1,0 +1,116 @@
+{
+  "format": "agent_closed_loop.bundle.v1",
+  "stage_kind": "ordered_duration_v7",
+  "risk_kind": "three_signal_v11",
+  "encoder_config": {
+    "dim": 128,
+    "heads": 4,
+    "window": 120,
+    "dilations": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "kernel": 3,
+    "phase_dropout": 0.1
+  },
+  "stage_config": {
+    "dimension": 128,
+    "hidden": 64,
+    "nominal_frames": 200,
+    "duration_weight": 0.05,
+    "prior_strength": 2.0,
+    "prior_clip": 4.0,
+    "evidence_frames": 15,
+    "confirmation_threshold": 0.77,
+    "change_floor": 0.03
+  },
+  "preprocessing": {
+    "smooth_frames": 10,
+    "persist_frames": 5,
+    "minimum_history": 15
+  },
+  "threshold": 4.7099385261535645,
+  "unit_config": {
+    "close": [
+      -0.20097549259662628,
+      -0.21384753286838531
+    ],
+    "open": [
+      0.8366967171430588,
+      0.7682516902685166
+    ],
+    "smooth_frames": 3,
+    "min_frames": 6,
+    "max_frames": 300,
+    "history_frames": 900,
+    "history_units": 16,
+    "points": 24,
+    "recency_frames": 90.0
+  },
+  "signal_names": [
+    "projection_distance",
+    "action_unit_repetition",
+    "line_energy"
+  ],
+  "ood_protocol": {
+    "fit_split": "normal train only",
+    "reference_episodes": 2246,
+    "reference_frames": 17968,
+    "pca_fit_frames": 287488,
+    "projection_dim": 32,
+    "retained_variance": 0.8906556958349059,
+    "scale_fit": "normal train 128 evenly spaced samples/episode; nearest search excludes own episode",
+    "reference_selection": "8 evenly spaced observed features per normal training trajectory",
+    "projection": "normal standardized/clipped shared state-motion-visual latent; unwhitened PCA32",
+    "combination": "max(c_distance,1.5*c_repeat,c_LINE); c=-log10(normal training tail)",
+    "threshold_source": "normal calibration episode-maximum tail rank <= 5%; finite-sample correction; conservative ties",
+    "abnormal_fit_episodes": 0,
+    "source_manifest_sha256": "bb1245dd7227113cc53c3123aadb0cba1963f48b34d8a6a0485e655c3ecbfb0d",
+    "base_bundle_sha256": "78b66a6fc15be66e5dd1a07c2f69953da55c2abb40196c1506f484ecd4738057",
+    "repetition": "per-arm observed close-to-close units; arc-length alignment; accumulated body/visual endpoint recurrence",
+    "action_semantics": "observed execution only; recorded action==state is not an independent command",
+    "unit_config": {
+      "close": [
+        -0.20097549259662628,
+        -0.21384753286838531
+      ],
+      "open": [
+        0.8366967171430588,
+        0.7682516902685166
+      ],
+      "smooth_frames": 3,
+      "min_frames": 6,
+      "max_frames": 300,
+      "history_frames": 900,
+      "history_units": 16,
+      "points": 24,
+      "recency_frames": 90.0
+    },
+    "base_v8_sha256": "251207dd2d16510b638d0c8f733d22df9abe21ee0cb37015f6e25c4be6b909e8",
+    "repetition_fusion": "max of normal-tail strengths for gripper units and gripper-free periodic motion; recalibrated as one repetition criterion",
+    "repetition_recency": "exp(-(current_end-old_end)/90); causal decay between completed units",
+    "line_routing": "stable lowest-index route within 1e-5 logit tolerance; normal training energy distribution and calibration recomputed",
+    "preprocessing": {
+      "smooth_frames": 10,
+      "persist_frames": 5,
+      "minimum_history": 15
+    },
+    "parameter_selection": "3-second recency and mean10/min5 fixed from causal latency design; no failure-onset labels or failure-tuned thresholds",
+    "evaluation_scope": "pant_fail and existing validation have been inspected in prior versions; regression evaluation, not new independent generalization",
+    "criterion_weights": [
+      1.0,
+      1.5,
+      1.0
+    ],
+    "weight_selection": "User requested increased repetition penalty; fixed 1.5 before weighted failure evaluation.",
+    "command_evidence_status": "Real failure-run command logs audited separately; no normal command calibration, not included in the OOD alarm.",
+    "base_v10_sha256": "6ec5cce93c16127f194d110d4e757100f732f3a6a5a07bd1b7060a114eec8d44"
+  },
+  "criterion_weights": [
+    1.0,
+    1.5,
+    1.0
+  ]
+}

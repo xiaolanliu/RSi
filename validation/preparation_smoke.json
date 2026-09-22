@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "episodes": 3,
+  "frames": 3688,
+  "normalization_fit_frames": 1437,
+  "teacher_parity": "matches independently archived offline probabilities on all 1164 validation frames",
+  "checks": [
+    "LeRobot reader",
+    "path mapping",
+    "teacher checkpoint inference",
+    "normal-only normalization",
+    "train/evaluation separation",
+    "finite prepared 81-D input"
+  ]
+}

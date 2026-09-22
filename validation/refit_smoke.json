@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "scope": "Pipeline smoke only; 35 historical episodes truncated to 64 frames, not a performance evaluation or full training",
+  "frames": 2240,
+  "checks": [
+    "explicit path PCA/reference fitting",
+    "explicit path V10 unit fitting without external failures",
+    "explicit path V11 weighting and recalibration",
+    "load resulting standalone bundle and stream a trajectory",
+    "21 normal calibration episodes, no external failures used"
+  ]
+}

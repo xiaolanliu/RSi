@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "device": "cpu",
+  "python": "3.10.12",
+  "torch": "2.8.0+cu128",
+  "numpy": "1.26.4",
+  "records": [
+    {
+      "id": "data_open_long_sleeve_0806_lerobot_dc230203_ep000043",
+      "frames": 950,
+      "mode": "online",
+      "passed": true
+    },
+    {
+      "id": "test_lwy_ep000000",
+      "frames": 1485,
+      "mode": "online",
+      "passed": true
+    },
+    {
+      "id": "test_lwy_ep000001",
+      "frames": 1308,
+      "mode": "online",
+      "passed": true
+    },
+    {
+      "id": "test_lwy_ep000002",
+      "frames": 3225,
+      "mode": "online",
+      "passed": true
+    },
+    {
+      "id": "pant_fail_ep000000",
+      "frames": 2018,
+      "mode": "online",
+      "passed": true
+    },
+    {
+      "id": "pant_fail_ep000001",
+      "frames": 2164,
+      "mode": "online",
+      "passed": true
+    },
+    {
+      "id": "pant_fail_ep000002",
+      "frames": 681,
+      "mode": "online",
+      "passed": true
+    },
+    {
+      "id": "pant_fail_ep000003",
+      "frames": 553,
+      "mode": "online",
+      "passed": true
+    },
+    {
+      "id": "offline_pants_0820_ep000003",
+      "frames": 1164,
+      "mode": "offline",
+      "passed": true
+    }
+  ],
+  "frames": 13548,
+  "float_tolerances": {
+    "atol": 8e-05,
+    "rtol": 0.0003
+  },
+  "offline_reference": "Independent original-source CPU reference",
+  "checks": [
+    "artifact SHA256",
+    "2000 epoch encoder identity",
+    "complete trajectory golden outputs",
+    "exact alarm and stage sequences",
+    "three signals only",
+    "reset and prefix equality",
+    "no stage regression or skip",
+    "raw state layout adaptation",
+    "offline boundaries"
+  ]
+}

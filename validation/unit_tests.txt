@@ -1,0 +1,44 @@
+test_dense_retries_vs_same_number_of_spaced_actions (test_action_units.PhysicalUnitTests) ... ok
+test_dynamics_rejects_duplicate_commands_and_detects_tracking_failure (test_action_units.PhysicalUnitTests) ... ok
+test_layout_and_arc_length (test_action_units.PhysicalUnitTests) ... ok
+test_scalar_tail_ties_use_reference_precision (test_action_units.PhysicalUnitTests) ... ok
+test_task_effect_suppresses_repeated_body (test_action_units.PhysicalUnitTests) ... ok
+test_variable_tempo_one_arm_cycles_and_no_future (test_action_units.PhysicalUnitTests) ... ok
+test_causal_prefix_independent_of_future_commands (test_command_logs.CommandLogTests) ... ok
+test_future_chunk_overlap_discards_stale_prefix (test_command_logs.CommandLogTests) ... ok
+test_uses_previous_sent_command_and_resets_transition (test_command_logs.CommandLogTests) ... ok
+test_empirical_tails_ties_and_finite_sample_calibration (test_three_signal_ood.ThreeSignalTests) ... ok
+test_exactly_three_and_no_learned_bypass (test_three_signal_ood.ThreeSignalTests) ... ok
+test_line_routing_stable_at_float_roundoff_tie (test_three_signal_ood.ThreeSignalTests) ... ok
+test_loop_requires_motion_and_history (test_three_signal_ood.ThreeSignalTests) ... ok
+test_persistence_prefix_and_large_scores (test_three_signal_ood.ThreeSignalTests) ... ok
+test_reference_distance_and_episode_exclusion (test_three_signal_ood.ThreeSignalTests) ... ok
+test_weight_changes_priority_not_empirical_percentile (test_three_signal_ood.ThreeSignalTests) ... ok
+test_alarm_freezes_memory_clears_evidence_and_chunk_parity (test_duration_subtask.DurationTests) ... ok
+test_causal_chunk_and_frame_equivalence (test_duration_subtask.DurationTests) ... ok
+test_length_prior_has_centered_gradient (test_duration_subtask.DurationTests) ... /data/users/liuweiyuan/Code/RSi/tests/test_duration_subtask.py:26: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  self.assertEqual(float(loss[2]),0.)
+ok
+test_no_backtrack_or_skip_and_no_banked_future (test_duration_subtask.DurationTests) ... ok
+test_padding_and_right_censoring (test_duration_subtask.DurationTests) ... ok
+test_duration_band_not_equal_allocation_and_gradients (test_change_subtask.ChangeTests) ... ok
+test_no_clock_transition_and_no_reusing_high_future_scores (test_change_subtask.ChangeTests) ... ok
+test_soft_uncertainty_can_recede_and_alarm_clears_confirmation (test_change_subtask.ChangeTests) ... ok
+test_stream_chunks_future_and_stationary_contrasts (test_change_subtask.ChangeTests) ... ok
+unittest.case.FunctionTestCase (test_causality_streaming_and_dimensions) ... ok
+unittest.case.FunctionTestCase (test_left_padding_and_truncated_warmup) ... ok
+unittest.case.FunctionTestCase (test_train_gradients_and_visual_influence) ... ok
+unittest.case.FunctionTestCase (test_confirmation_rejection_and_risk_cache) ... ok
+unittest.case.FunctionTestCase (test_constant_weak_evidence_does_not_accumulate) ... ok
+unittest.case.FunctionTestCase (test_head_chunk_step_reset_and_future) ... ok
+unittest.case.FunctionTestCase (test_memory_conservation_causality_no_skips) ... ok
+unittest.case.FunctionTestCase (test_clipped_routing_and_strict_serialization) ... ok
+unittest.case.FunctionTestCase (test_correct_only_empty_classes_and_deterministic_zero_importance) ... ok
+unittest.case.FunctionTestCase (test_exact_importance_activation_and_signed_weight_pruning) ... ok
+unittest.case.FunctionTestCase (test_training_only_fitting_and_inference_has_no_fit_side_effects) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 3.170s
+
+OK

@@ -1,0 +1,12 @@
+{
+  "episode": "offline_pants_0820_ep000003",
+  "mode": "offline",
+  "frames": 1164,
+  "boundaries_one_based": [
+    238,
+    423,
+    699,
+    899,
+    1165
+  ]
+}

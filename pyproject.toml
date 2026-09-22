@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rsi-agent-closed-loop"
+version = "0.11.0"
+description = "Reproducible causal subtask monitoring and three-signal OOD detection"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = ["numpy>=1.26,<2", "torch>=2.8,<2.9"]
+
+[project.optional-dependencies]
+offline = ["pandas>=2.2,<2.3", "pyarrow>=20,<21", "matplotlib>=3.9,<3.10"]
+vision = ["av>=13,<14", "Pillow>=10", "einops>=0.8,<0.9"]
+analysis = ["scipy>=1.15,<1.16", "matplotlib>=3.9,<3.10"]
+
+[project.scripts]
+rsi-replay = "rsi_tools.replay:main"
+rsi-verify = "rsi_tools.verify:main"
+train-duration-subtask = "agent_closed_loop.train_duration_subtask:main"
+
+[tool.setuptools.packages.find]
+include = ["agent_closed_loop*", "compile*", "rsi_tools*", "third_party*"]
+
+[tool.setuptools.package-data]
+"third_party.wan22_vae" = ["LICENSE.txt"]
+"rsi_tools" = ["report.html"]

@@ -1,0 +1,48 @@
+{
+  "version": "ood_v4_revision2",
+  "dim": 128,
+  "epochs": 2000,
+  "batch_size": 64,
+  "target_frames": 256,
+  "context_frames": 149,
+  "seed": 29,
+  "lr": 0.0003,
+  "minimum_lr": 2.9999999999999997e-05,
+  "lr_warmup_epochs": 10,
+  "weight_decay": 0.01,
+  "losses": {
+    "teacher_kl": 1.0,
+    "visual_smooth_l1": 0.5,
+    "state_smooth_l1": 0.1
+  },
+  "modality_dropout": 0.15,
+  "phase_dropout": 0.1,
+  "precision": "BF16 autocast, FP32 parameters/loss",
+  "train_episodes": 2246,
+  "train_frames_per_epoch": 2579110,
+  "chunks_per_epoch": 11204,
+  "optimizer_steps_per_epoch": 176,
+  "config": {
+    "dim": 128,
+    "heads": 4,
+    "window": 120,
+    "dilations": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "kernel": 3,
+    "phase_dropout": 0.1
+  },
+  "data_manifest_sha256": "927c89431a7488c3ebaad93a9c1d03b3dda3bbb261b87344f6b397c629dc85c0",
+  "source_hashes": {
+    "streaming_fusion.py": "0f2807dbca4e3ee4cdadc724c4912640fbb5886b61bffd741baafd53c7562203",
+    "train_ood_v4.py": "09a063c67ec55db6fb3e674868e93fc887a171b429d1d9bb1ef6c3157ab873cf",
+    "prepare_ood_v4.py": "4727b82338d3b880b00c3f6ab398b2272bd9dcf47953263b8488e607b2f85f11"
+  },
+  "selection": "fixed final epoch 2000; no early stopping or test selection",
+  "epoch_definition": "all training frames are supervised exactly once, with left context additionally read",
+  "risk_stage": "freeze final backbone; identical fixed 1200-step LOEO MIL training per risk fold, then final all-positive candidate",
+  "normalization": "normal training only; no inherited h64 feature inputs"
+}

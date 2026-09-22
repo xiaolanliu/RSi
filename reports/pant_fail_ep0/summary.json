@@ -1,0 +1,9 @@
+{
+  "episode": "pant_fail_ep000000",
+  "mode": "online",
+  "frames": 2018,
+  "first_alarm_frame": 303,
+  "first_alarm_seconds": 10.100000381469727,
+  "alarm_frames": 1278,
+  "threshold": 4.7099385261535645
+}
