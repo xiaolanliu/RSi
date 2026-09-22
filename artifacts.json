@@ -192,6 +192,11 @@
       "sha256": "9af500de5f2f838f2daddedf4d181a30b9fa485463a652f4287919b7e5279913"
     },
     {
+      "path": "configs/robodojo_assets_identity.json",
+      "bytes": 3029919,
+      "sha256": "eee12b011fc23bf5850343f91fb23da5af03306e3c65e3131ba0ce2a11b33547"
+    },
+    {
       "path": "configs/sim_normalization.json",
       "bytes": 377,
       "sha256": "59cc4252bd10bebe58f12cf7f8fe113159851245d14f81afcec7f53b786e341a"
@@ -483,8 +488,8 @@
     },
     {
       "path": "rsi_loop/collection.py",
-      "bytes": 18099,
-      "sha256": "2ed941702ae52490ef9ee17475b3391950a3c9f959cd48e540657a26fe7fb385"
+      "bytes": 19907,
+      "sha256": "22d48e2856488dcb83e6b45ab2a0972b81824086eea46a04ade71c2099cb834f"
     },
     {
       "path": "rsi_loop/context.py",

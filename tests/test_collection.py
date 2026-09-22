@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from rsi_loop.collection import make_plan, task_stats, assess, verify_rgb
+from rsi_loop.collection import make_plan, task_stats, assess, verify_rgb, missing_layout_assets
 from rsi_loop.recording import CAMERAS, LosslessRGB, read_rgb
 
 
@@ -37,6 +37,20 @@ def test_errors_and_running_attempts_do_not_satisfy_target():
     row = task_stats(plan, records)[0]
     assert row["completed"] == 2 and row["success"] == 1 and row["failure"] == 1
     assert row["errors"] == 1 and row["attempts"] == 4
+
+
+def test_missing_native_assets_wait_without_substitute_geometry(tmp_path):
+    layout = tmp_path/"layout.json"
+    layout.write_text(json.dumps({"Rigid":{"cube":[{"category_idx":2}]}}))
+    candidate = {"layout_file":str(layout)}
+    assert len(missing_layout_assets(tmp_path, candidate)) == 2
+    folder = tmp_path/"Assets/Object/RoboDojo/Rigid/cube/00002"
+    folder.mkdir(parents=True)
+    (folder/"metadata.json").write_text(json.dumps({"geometry":{}}))
+    (folder/"object.usdz").write_bytes(b"test-native-asset")
+    assert "missing geometry" in missing_layout_assets(tmp_path, candidate)[0]
+    (folder/"metadata.json").write_text(json.dumps({"geometry":{"bbox":[1,1,1]}}))
+    assert missing_layout_assets(tmp_path, candidate) == []
 
 
 def test_lossless_rgb_all_frames_and_checksum_rejection(tmp_path):

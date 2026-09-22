@@ -44,4 +44,4 @@ jobs:
       - name: Verify collection contracts in the integration Python version
         run: |
           python -m pip install pytest numpy==1.26.4 av==13.1.0 Pillow==12.3.0 imageio==2.37.0 imageio-ffmpeg==0.6.0
-          python -m pytest -q tests/test_collection.py
+          python -m pytest -q tests/test_collection.py tests/test_asset_download.py

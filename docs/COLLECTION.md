@@ -17,6 +17,23 @@ python -m rsi_loop.collection prepare --output outputs/pi05_all_tasks_30 \
 python -m rsi_loop.collection run --output outputs/pi05_all_tasks_30
 ```
 
+任务代码和布局存在，不代表所有物体资产已下载。原生物体必须同时具有有效
+`metadata.json` 和 `object.usd[z]`。采集器先检查下一布局需要的物体：缺失时
+等待资产、继续其他可运行任务，不消耗试验名额；全部待运行任务都缺资产时
+显示 `paused_missing_assets`，资产补齐后自动继续。
+
+仓库提供官方数据集的 15,367 个资产文件路径及 SHA256 清单，可补齐缺失资源：
+
+```bash
+python tools/fetch_robodojo_assets.py --report outputs/assets_download.json
+```
+
+下载器使用 RoboDojo-Benchmark/RoboDojo 的 ModelScope 数据接口，支持断点
+续传；只有大小和 SHA256 都匹配后才安装到目标目录。已有文件保持原样，
+此命令不重新认证这些已有文件。若 `external/robodojo/Assets` 是软链，新资产
+会补充到其指向的原生资源目录。整份清单约 38.44 GiB；本机首次检查缺失约
+18.24 GiB。下载报告保存原始清单身份、已校验下载量与错误。
+
 `prepare` 固定任务、权重身份、资源路径和采集代码 SHA256。布局按 group 0、1、2
 交错取样，正常情况下每组 10 个不同布局。每个回合使用独立且记录在案的
 π0.5 随机种子。布局编号严格遵循原生 SeedManager 的文件排序位置，不能把

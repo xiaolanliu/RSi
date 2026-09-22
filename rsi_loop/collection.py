@@ -76,6 +76,26 @@ class NoMonitor:
         return dict(alarm=False, monitor_enabled=False)
 
 
+def missing_layout_assets(robodojo, candidate):
+    """Wait for actual native object resources instead of burning trial slots."""
+    root = Path(robodojo)/"Assets/Object/RoboDojo"
+    layout = json.loads(Path(candidate["layout_file"]).read_text())
+    missing = []
+    for kind in ("Rigid", "Dynamic", "Geometry", "Articulation", "Garment", "Fluid"):
+        for category, instances in layout.get(kind, {}).items():
+            for instance in instances:
+                group = "Clutter" if instance.get("type") == "cluttered" else kind
+                folder = root/group/category/f'{instance["category_idx"]:05d}'
+                metadata = folder/"metadata.json"
+                if not metadata.is_file():
+                    missing.append(str(metadata))
+                elif not json.loads(metadata.read_text()).get("geometry"):
+                    missing.append(str(metadata)+": missing geometry")
+                if not any((folder/name).is_file() for name in ("object.usdz", "object.usd")):
+                    missing.append(str(folder/"object.usd[z]"))
+    return sorted(set(missing))
+
+
 def assess(run, kind):
     """Only acknowledged, native-terminal VLA-only episodes enter the dataset."""
     run = Path(run)
@@ -145,7 +165,7 @@ def collect_one(plan, task, candidate, run, seed, vla):
     config = dict(task=task, eval_seed=candidate["eval_seed"], layout_id=candidate["layout_id"],
                   vla_checkpoint_kind=plan["checkpoint_kind"], inference_seed=seed,
                   monitor_enabled=False, gpt=dict(enabled=False), rgb_storage="lossless_video",
-                  layout_sha256=digest(candidate["layout_file"]))
+                  layout_sha256=digest(candidate["layout_file"]), collection_source_sha256=plan["source_sha256"])
     write_json(run/"run_config.json", dict(config=config, resources=p))
     vla.call("begin_episode", output=str(run/"vla"), seed=seed)
     env = dict(PYTHONPATH=os.pathsep.join([str(ROOT), p["robodojo"], p["robodojo"]+"/XPolicyLab"]),
@@ -270,7 +290,22 @@ def run_campaign(output):
                     vla.close(); vla = None
                 time.sleep(30)
                 continue
-            row, task = min(eligible, key=lambda pair: (pair[0]["attempts"], pair[0]["task"]))
+            waiting, selected = {}, None
+            for row, task in sorted(eligible, key=lambda pair: (pair[0]["attempts"], pair[0]["task"])):
+                missing = missing_layout_assets(plan["resources"]["robodojo"], task["candidates"][row["attempts"]])
+                if missing:
+                    waiting[task["task"]] = missing
+                    continue
+                selected = row, task
+                break
+            state["waiting_for_assets"] = waiting
+            if selected is None:
+                state.update(status="paused_missing_assets", active=None)
+                if vla is not None:
+                    vla.close(); vla = None
+                time.sleep(30)
+                continue
+            row, task = selected
             candidate = task["candidates"][row["attempts"]]
             attempt_id = len(records)
             relative = f'episodes/{task["task"]}/attempt_{row["attempts"]:03d}'
