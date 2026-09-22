@@ -1,0 +1,51 @@
+{
+  "arms": {
+    "left": "can_left",
+    "right": "can_right"
+  },
+  "cameras": {
+    "front": "239622301704",
+    "left_wrist": "346522074444",
+    "right_wrist": "346522074314"
+  },
+  "camera_resolution": [
+    640,
+    480,
+    30
+  ],
+  "camera_resolutions": {
+    "front": [1280, 720, 30]
+  },
+  "joint_limits_deg": [
+    [
+      -150,
+      150
+    ],
+    [
+      0,
+      180
+    ],
+    [
+      -170,
+      0
+    ],
+    [
+      -100,
+      100
+    ],
+    [
+      -70,
+      70
+    ],
+    [
+      -120,
+      120
+    ]
+  ],
+  "fk_file": "/home/agilex/miniconda3/envs/evo-rl/lib/python3.10/site-packages/piper_sdk/kinematics/piper_fk.py",
+  "runtime_dir": "/tmp/wcx_agilex_control",
+  "gripper_limits_mm": [
+    0,
+    70
+  ]
+}

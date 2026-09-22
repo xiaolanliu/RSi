@@ -1,0 +1,4 @@
+interface:
+  display_name: "AgileX 多服务器操控"
+  short_description: "按服务器选择设备配置，读取相机与机械臂反馈、执行任务并记录实测结果"
+  default_prompt: "使用 $wcx-agilex-control 连接本次指定的服务器，按该现场配置和当前授权完成观察或机械臂任务，并更新对应服务器的实测记录。"

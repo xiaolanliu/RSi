@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgileX · 现场策略回放</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="eyebrow">GPT as Policy · live rollout</p>
+      <h1>AgileX 本机推理监视</h1>
+      <p class="lede">对照每一步的语言目的与 API 命令。主相机画面与过程视频可同时留下。</p>
+    </div>
+    <div class="status-pill" id="status-pill">idle</div>
+  </header>
+
+  <section class="controls">
+    <label class="task">
+      <span>任务</span>
+      <textarea id="task" rows="2">观察当前场景并只做 dry_run，不要执行实机动作</textarea>
+    </label>
+    <label class="switch">
+      <input type="checkbox" id="save-video">
+      <span>save_video</span>
+      <small>录制主相机全过程并叠字</small>
+    </label>
+    <label class="switch warn">
+      <input type="checkbox" id="execute">
+      <span>execute_enabled</span>
+      <small>勾选后直接实机执行 phase</small>
+    </label>
+    <label class="steps">
+      <span>max steps</span>
+      <input type="number" id="max-steps" min="1" max="30" value="16">
+    </label>
+    <button id="start" type="button">开始推理</button>
+    <button id="stop" class="stop" type="button">强制停止</button>
+  </section>
+
+  <main class="stage">
+    <section class="view">
+      <figure>
+        <img id="front" alt="主相机" src="">
+        <figcaption>Front camera · 推理过程主视角</figcaption>
+      </figure>
+      <div class="thumbs">
+        <img id="left_wrist" alt="左腕" src="">
+        <img id="right_wrist" alt="右腕" src="">
+      </div>
+    </section>
+    <section class="panel">
+      <p class="kicker" id="caption-status">等待开始</p>
+      <h2 id="caption-decision">idle</h2>
+      <p class="reason" id="caption-reason">打开开关后开始一轮本机决策循环。save_video 开启时，主相机每一帧写入过程视频，并叠上当前目的与命令。</p>
+      <pre id="caption-command" class="command"></pre>
+    </section>
+  </main>
+
+  <section class="timeline-wrap">
+    <h2>步骤时间线</h2>
+    <ol id="timeline" class="timeline"></ol>
+  </section>
+
+  <footer>
+    <p>视觉结构参照 <a href="https://github.com/anonymous-report-421/GPT-as-Policy">GPT-as-Policy</a> 的逐步回放：目的、命令、画面分栏。仅绑定 127.0.0.1。</p>
+    <p id="output-path"></p>
+  </footer>
+  <script src="/app.js"></script>
+</body>
+</html>

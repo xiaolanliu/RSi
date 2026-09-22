@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "tools": [
+    {
+      "name": "get_state",
+      "description": "Passively sample all configured CAN interfaces and return timestamped Piper feedback and observed control frames. No cameras, SDK initialization or actuation; state keys follow the selected site's recorded interface labels.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "seconds": {
+            "type": "number",
+            "minimum": 0.5,
+            "maximum": 30,
+            "default": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "observe",
+      "description": "Return the selected site RGB, aligned depth, intrinsics, timestamps, depth scale and arm state through the shared camera service. Sites explicitly configured without arm readout report states:null and missing_modalities:[arm_state]. No actuation; use a new output directory.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "output": {
+            "type": "string",
+            "description": "Absolute output directory on the robot server"
+          }
+        },
+        "required": [
+          "output"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "move_left",
+      "description": "Execute a finite trajectory only on the left arm. XYZ refers to that arm base and link6, not fingertip. Returns actual endpoint and joint error; command completion does not certify task success. Does not command gripper or enable/disable drives.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "joint_deg": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 6,
+                    "maxItems": 6
+                  }
+                },
+                "required": [
+                  "joint_deg"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "xyz_mm": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  },
+                  "rpy_deg": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "xyz_mm"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "duration_s": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "settle_s": {
+            "type": "number",
+            "minimum": 0,
+            "default": 3
+          },
+          "output": {
+            "type": "string",
+            "description": "Absolute telemetry JSON output path on the robot server"
+          },
+          "dry_run": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "target",
+          "duration_s",
+          "output"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "move_right",
+      "description": "Execute a finite trajectory only on the right arm. XYZ refers to that arm base and link6, not fingertip. Returns actual endpoint and joint error; command completion does not certify task success. Does not command gripper or enable/disable drives.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "joint_deg": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 6,
+                    "maxItems": 6
+                  }
+                },
+                "required": [
+                  "joint_deg"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "xyz_mm": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  },
+                  "rpy_deg": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "xyz_mm"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "duration_s": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "settle_s": {
+            "type": "number",
+            "minimum": 0,
+            "default": 3
+          },
+          "output": {
+            "type": "string",
+            "description": "Absolute telemetry JSON output path on the robot server"
+          },
+          "dry_run": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "target",
+          "duration_s",
+          "output"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "move_both",
+      "description": "Move both front arms on one shared trajectory clock, with separate targets in each arm base. Sequential CAN writes, not hardware atomicity. Any fault or stop ceases both streams; already-sent hardware targets are not retracted. Does not command grippers.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "duration_s": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "settle_s": {
+            "type": "number",
+            "minimum": 0,
+            "default": 3
+          },
+          "output": {
+            "type": "string",
+            "description": "Absolute telemetry JSON output path on the robot server"
+          },
+          "dry_run": {
+            "type": "boolean",
+            "default": false
+          },
+          "targets": {
+            "type": "object",
+            "properties": {
+              "left": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "joint_deg": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 6,
+                        "maxItems": 6
+                      }
+                    },
+                    "required": [
+                      "joint_deg"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "xyz_mm": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 3,
+                        "maxItems": 3
+                      },
+                      "rpy_deg": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 3,
+                        "maxItems": 3
+                      }
+                    },
+                    "required": [
+                      "xyz_mm"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "right": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "joint_deg": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 6,
+                        "maxItems": 6
+                      }
+                    },
+                    "required": [
+                      "joint_deg"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "xyz_mm": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 3,
+                        "maxItems": 3
+                      },
+                      "rpy_deg": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 3,
+                        "maxItems": 3
+                      }
+                    },
+                    "required": [
+                      "xyz_mm"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "required": [
+              "left",
+              "right"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "targets",
+          "duration_s",
+          "output"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "stop",
+      "description": "Stop generating new targets for the currently running motion primitive; retains drive enable and does not retract.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "set_gripper_left",
+      "description": "Set only the left gripper opening and motor effort. Returns measured opening, effort and drive status. Contact before zero opening is not automatically a failed grasp. Does not reset errors/zero or send arm joint targets.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "width_mm": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Opening in mm; range is enforced from the selected site's configuration for this arm."
+          },
+          "effort_nm": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5,
+            "default": 1
+          },
+          "duration_s": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "default": 1.5
+          },
+          "settle_s": {
+            "type": "number",
+            "minimum": 0,
+            "default": 1
+          },
+          "output": {
+            "type": "string"
+          },
+          "dry_run": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "width_mm",
+          "output"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "set_gripper_right",
+      "description": "Set only the right gripper opening and motor effort. Returns measured opening, effort and drive status. Contact before zero opening is not automatically a failed grasp. Does not reset errors/zero or send arm joint targets.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "width_mm": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Opening in mm; range is enforced from the selected site's configuration for this arm."
+          },
+          "effort_nm": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5,
+            "default": 1
+          },
+          "duration_s": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "default": 1.5
+          },
+          "settle_s": {
+            "type": "number",
+            "minimum": 0,
+            "default": 1
+          },
+          "output": {
+            "type": "string"
+          },
+          "dry_run": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "width_mm",
+          "output"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

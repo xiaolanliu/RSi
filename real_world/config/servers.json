@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "sites": {
+    "agilex56": {
+      "ssh": {
+        "host": "10.169.21.56",
+        "user": "agilex",
+        "port": 22
+      },
+      "expected_hostname": "agliex",
+      "reference": "skills/wcx-agilex-control/references/site-agilex56.md",
+      "native_project": "/home/agilex/lwy_astra_agx",
+      "primitive_deployment": {
+        "project": "/home/agilex/lwy_astra_agx",
+        "python": "/home/agilex/miniconda3/envs/evorl-ljy/bin/python",
+        "config": "config/site.json",
+        "runtime_dir": "/tmp/wcx_agilex_control",
+        "supported_primitives": [
+          "get_state",
+          "observe",
+          "move_left",
+          "move_right",
+          "move_both",
+          "set_gripper_left",
+          "set_gripper_right",
+          "stop"
+        ],
+        "source_revision_sha256": "6c7f42c585d6b18d7e64821dc8f07787d425110354f538c8ab91b1b92fc51d4a",
+        "source_verified_date": "2026-09-15",
+        "source_verification_record": "evidence/2026-09-14/host-10.169.21.56/castle-wall-evening/README.md"
+      },
+      "validation": {
+        "date": "2026-09-15",
+        "level": "block_wall_3_2_3_2_3_with_delayed_stability_verified",
+        "detail": "Twelve pieces formed a thirteen-unit wall with column heights [3,2,3,2,3]. Fresh RGBD 94.24 seconds after the last release confirmed the silhouette remained, with height plateaus [85.5,57.5,85.5,56.5,88.5] mm above the local foam plane. Both arms withdrew, both grippers empty, complete feedback and no arm/gripper faults. Some yaw and overhang remain; no precision alignment, disturbance or repeatability claim. Empty grasps, multiple-object grasps, drops and rejected geometry candidates are preserved. Existing primitives reused; hardware settings and original site.json unchanged. Only the right wrist profile changed from 640x480 to 848x480 using task-specific config. Per-stage public action/reason summaries recorded in 87 real clips; final video validation is documented separately in the export README. Prior ACE success and incomplete towel tasks remain historical evidence. Local geometry references are not full hand-eye or TCP calibration.",
+        "evidence": "evidence/2026-09-14/host-10.169.21.56/castle-wall-evening/README.md"
+      },
+      "calibration": {
+        "local_translation_model": "experiments/hd_local_translation_model.json",
+        "scope": "agilex56 right arm and recorded front-camera geometry only; not a full hand-eye/TCP calibration"
+      }
+    },
+    "panfeng38": {
+      "ssh": {
+        "host": "10.169.21.38",
+        "user": "SENSETIME\\panfeng1",
+        "port": 22
+      },
+      "expected_hostname": "cn0614009042l",
+      "reference": "skills/wcx-agilex-control/references/site-panfeng38.md",
+      "native_project": "/home/SENSETIME/panfeng1/ws/data/yuxiang/piper-aio-private",
+      "native_python": "/home/SENSETIME/panfeng1/miniconda3/envs/piperaio/bin/python",
+      "primitive_deployment": {
+        "project": "/home/SENSETIME/panfeng1/wcx_gpt6_astra_agilex",
+        "python": "/home/SENSETIME/panfeng1/wcx_gpt6_astra_agilex/.venv-observe/bin/python",
+        "config": "config/sites/panfeng38/control-piperx-20260913.json",
+        "runtime_dir": "/tmp/wcx_agilex_panfeng38",
+        "supported_primitives": [
+          "get_state",
+          "observe",
+          "move_left",
+          "move_right",
+          "move_both",
+          "stop",
+          "set_gripper_left",
+          "set_gripper_right"
+        ],
+        "source_revision_sha256": "b610c55d4b74d13be089ccaf80c59b31881e37e2aa23bb064a601459a8549282",
+        "source_verified_date": "2026-09-14",
+        "source_verification_record": "evidence/2026-09-14/host-10.169.21.38/bit-insertion-002453/164-mode-profile/README.md"
+      },
+      "validation": {
+        "date": "2026-09-13",
+        "level": "paired_individual_motion_both_grippers_drawer_color_sort_and_rgbd_verified",
+        "detail": "Piper X; one front execution arm per USB-CAN. Shared client/report/geometry/phase deployed, 46 relevant offline tests passed, active control config and RGBD service unchanged. Both front arms and grippers now physically verified: right red bit and left green bit picked, carried and released into compartments containing matching colors. Empty grasp attempts retained; successful lifts measured right 9.2 mm and left 10.1 mm. Post-release close views and final unobstructed observe confirm both placements. Final grippers left 23.3 mm/right 23.9 mm, enabled; arm feedback complete, no arm or gripper fault. Prior paired lift and drawer pull remain historical evidence. Stop idle only. Calibration remains candidate and TCP unverified. Task-local contact references kept separate per arm; read fresh state before further actions.",
+        "evidence": "evidence/2026-09-13/host-10.169.21.38/screwdriver-sort-180648/README.md"
+      },
+      "calibration": {
+        "status": "candidate_user_reported_scale_with_holdout_evaluation",
+        "reference": "config/sites/panfeng38/calibration-20260913-93mm.json",
+        "evidence": "evidence/2026-09-13/host-10.169.21.38/calibration-155901/README.md",
+        "scope": "Two wrist-to-link6, fixed D455-to-bases and inter-base candidates. Per arm 22 training + 6 held-out poses, measured Piper X FK. Recomputed offline using this user-confirmed physical sheet: nominal 100 mm bar measures 93 mm, uniform 0.93 scaling assumed; square 27.9 mm / marker 20.46 mm. Wrist-chain holdout RMS left 2.625 mm/right 2.515 mm; inter-base combination RMS 2.906 mm. Residual scale/depth consistency, paper flatness and absolute point/TCP validation remain unverified; accepted_for_control=false. Nominal candidate and raw data preserved, active control config unchanged."
+      },
+      "robot_models": {
+        "left": "piper_x",
+        "right": "piper_x"
+      }
+    },
+    "houzhi1": {
+      "ssh": {
+        "host": "10.169.21.1",
+        "user": "SENSETIME\\houzhi1",
+        "port": 22
+      },
+      "expected_hostname": "60202263l",
+      "reference": "skills/wcx-agilex-control/references/site-houzhi1.md",
+      "native_project": "/home/SENSETIME/houzhi1/Evo-RL-real-world",
+      "native_python": "/home/SENSETIME/houzhi1/miniconda3/envs/evo-rl/bin/python",
+      "primitive_deployment": {
+        "project": "/home/SENSETIME/houzhi1/wcx_gpt6_astra_agilex",
+        "python": "/home/SENSETIME/houzhi1/miniconda3/envs/openpi/bin/python",
+        "config": "config/sites/houzhi1/control-20260913.json",
+        "runtime_dir": "/tmp/wcx_agilex_houzhi1",
+        "supported_primitives": [
+          "get_state",
+          "observe",
+          "move_left",
+          "move_right",
+          "move_both",
+          "stop",
+          "set_gripper_left",
+          "set_gripper_right"
+        ],
+        "source_revision_sha256": "e5a665a90b469d16a1e4bce93f000bb6e230c6a0904732d9016834274316725e",
+        "source_verified_date": "2026-09-14",
+        "source_verification_record": "evidence/2026-09-14/host-10.169.21.56/framework-alignment-0002/README.md"
+      },
+      "validation": {
+        "date": "2026-09-13",
+        "level": "paired_lift_grippers_and_rgbd_verified",
+        "detail": "September 13: all 8 shared CLI tools deployed. Enabled both arms using native SDK, entered CAN control and recovered slightly out-of-range J2/J3 through normal low-speed joint commands. Original move_both then executed a 15 s paired lift; post-observe reports left +197.022 mm and right +197.546 mm relative to pre-recovery positions for +200 mm targets. Both grippers restored via existing tools after mode switch triggered closure. Both arms enabled, ctrl_mode=1, fault codes zero. No firmware/zero/limit or motion-source changes. Active stop only offline tested. Calibration sampling confirmed physical wrist associations: left/can1 camera 243722071316, right/can0 camera 243322070942."
+      },
+      "calibration": {
+        "status": "candidate_with_holdout_evaluation",
+        "reference": "config/sites/houzhi1/calibration-20260913-1531.json",
+        "evidence": "evidence/2026-09-13/host-10.169.21.1/three-camera-calibration-151012/README.md",
+        "scope": "Three cameras: two wrist-to-link6 and fixed D455-to-both-bases candidates. 16 training + 4 held-out poses per arm. Uniform 0.93 printed scale is approximate. Wrist-chain held-out RMS left 4.392 mm/right 3.524 mm; inter-base RMS 6.32 mm and max 10.82 mm. No external absolute metrology/TCP validation; accepted_for_control=false; current control config and March results unchanged."
+      }
+    }
+  }
+}

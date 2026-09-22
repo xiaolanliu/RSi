@@ -1,5 +1,7 @@
 # RSi — 在线阶段识别与三信号 OOD 监测
 
+`real_world` 分支在 `real_world/` 下附带真机闭环：pi0.5 动作块、本仓库的在线监测、校准尾部报警后的 GPT 短恢复。步骤见 [real_world/docs/porting.md](real_world/docs/porting.md)。`main` 不包含这段控制代码。
+
 这是 `Agent_closed_loop` 当前 **V11** 的独立复现仓库，同时保留原始离线 CompILE **epoch 2000** 和在线编码器 **epoch 2000** 权重。克隆后即可在 CPU 上回放真实轨迹、核对逐帧结果，不需要原开发机器、COMPILE/SIEVE 目录、机器人、URDF 或下载视觉大模型。
 
 RSi provides a frozen V11 streaming subtask/OOD monitor, both original epoch-2000 checkpoints, real trajectory fixtures, independent golden outputs, and reproducible CLI examples. Start with the commands below; detailed documentation is in Chinese with explicit commands and data contracts.
