@@ -58,6 +58,15 @@ def report(run):
     for name in ("loop_summary.json", "native_outcome.json", "vla/vla_metadata.json", "control_test.json"):
         if (run/name).exists():
             records[name] = json.loads((run/name).read_text())
+    configuration = run/"run_config.json"
+    if configuration.exists():
+        provider = json.loads(configuration.read_text()).get("resolved_provider", {})
+        records["provider"] = {key: provider[key] for key in ("model", "base_url", "max_requests") if key in provider}
+    api = sorted((run/"recovery").glob("api_attempt_*.json"))
+    if api:
+        records["api_attempts"] = [json.loads(path.read_text()) for path in api]
+        records["recovery_decisions"] = [json.loads(path.read_text())
+            for path in sorted((run/"recovery").glob("recovery_*.json"))]
     warning = "此运行注入了测试报警，只验证控制交接。" if "control_test.json" in records else "本页展示模型的实际报警与原生任务结果。"
     page = f'''<!doctype html><html lang="zh-CN"><meta charset="utf-8">
 <title>{html.escape(run.name)} — RSI 仿真记录</title>

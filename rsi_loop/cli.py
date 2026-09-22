@@ -82,6 +82,7 @@ def evaluate(args):
     from .monitor import StreamingWan, CausalMonitor
     from .recovery import MockRecovery, ContextRecovery, ResponsesTransport, SYSTEM_PROMPT
     from .kinematics import DualMotion
+    from .providers import resolve_provider
     from agent_closed_loop.monitor import OnlineMonitor
     paths = resources(args.resources)
     config = tomllib.loads(Path(args.config).read_text())
@@ -97,16 +98,14 @@ def evaluate(args):
         raise ValueError("The benchmark-tuned checkpoint is reserved for VLA-only demonstration collection")
     if cfg.recovery_mode == "live" and not (args.allow_live_gpt and config["gpt"]["enabled"]):
         raise ValueError("Live mode requires both gpt.enabled=true and --allow-live-gpt")
+    provider = resolve_provider(config)
     if cfg.recovery_mode == "live":
-        gpt = config["gpt"]
-        if gpt["key_env"] != "RSI_SIM_OPENAI_API_KEY":
-            raise ValueError("Simulation live mode requires its dedicated RSI_SIM_OPENAI_API_KEY")
-        if not gpt.get("model") or not os.environ.get(gpt["key_env"]):
-            raise ValueError("Set a GPT model and the dedicated simulation key before starting workers")
+        ResponsesTransport(**provider).validate_credentials()
     output = Path(args.output).resolve()
     output.mkdir(parents=True, exist_ok=False)
     from dataclasses import asdict
-    (output/"run_config.json").write_text(json.dumps(dict(config=config, effective_loop=asdict(cfg), resources=paths), indent=2))
+    (output/"run_config.json").write_text(json.dumps(dict(config=config, effective_loop=asdict(cfg),
+                                                       resolved_provider=provider, resources=paths), indent=2))
     project = str(Path(__file__).resolve().parents[1])
     common = {"PYTHONPATH": project, "OMP_NUM_THREADS": "2", "OPENBLAS_NUM_THREADS": "2"}
     vla_env = dict(common, CUDA_VISIBLE_DEVICES=str(config["vla_gpu"]), XLA_PYTHON_CLIENT_PREALLOCATE="false",
@@ -140,7 +139,7 @@ def evaluate(args):
                 return DualMotion(meta["robot_descriptions"], meta["control_dt"])(obs, plan)
             gpt = config["gpt"]
             prompt = Path(gpt["system_prompt_file"]).read_text() if gpt.get("system_prompt_file") else SYSTEM_PROMPT
-            recovery = ContextRecovery(ResponsesTransport(**{k: gpt[k] for k in ("model", "enabled", "base_url", "key_env", "timeout")}),
+            recovery = ContextRecovery(ResponsesTransport(**provider, output=output/"recovery"),
                 motion, demo=demo, system_prompt=prompt, max_steps=cfg.max_recovery_steps, output=output/"recovery")
         result = Controller(SimClient(sim), VLAClient(vla), monitor, recovery, cfg, output).run(config["layout_id"])
         print(json.dumps(result, indent=2))

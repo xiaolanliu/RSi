@@ -200,6 +200,77 @@ state、末端位姿、任务指令和 OOD 三项证据。视频中的示范是�
 函数重建上下文，并读取运行配置中的示范路径与 SYSTEM_PROMPT。
 历史严格限制在当前时刻之前三秒，并记录实测夹爪开度。
 
+## 项目内 HahaModel 中转
+
+`configs/fold_clothes_haha.toml` 使用项目自己的 provider 配置。它由
+`rsi_loop.providers` 读取，不会写入 `~/.codex/config.toml`，也不修改 IDE
+登录、本机转发服务或全局代理环境变量。
+
+```toml
+model_provider = "haha"
+
+[model_providers.haha]
+name = "HahaModel"
+base_url = "https://hahamodel.com/v1"
+wire_api = "responses"
+env_key = "HAHA_API_KEY"
+requires_openai_auth = false
+use_environment_proxy = false
+# proxy_url = "http://127.0.0.1:YOUR_PORT"
+```
+
+此处 `requires_openai_auth=false` 表示不读取 OpenAI/Codex 登录凭据；HTTP
+请求仍使用指定 `HAHA_API_KEY` 的 Bearer 认证。密钥取自同名环境变量，
+或显式配置的 `gpt.credential_file=".env.local"` 中的同名条目。文件必须
+为 0600 权限且已被 Git 忽略；文件内容不会导入全局进程环境，也不会写入
+请求快照。不要把真实密钥写入 TOML、脚本、提交说明或命令行参数。
+
+复制模板为 `configs/fold_clothes_live.local.toml`，填写该中转实际支持的
+视觉/Responses 模型，设置 `[gpt].enabled=true`。模板限制每回合最多一个
+恢复请求和一个干预，默认最多输出 1600 tokens。网络错误、超时、HTTP
+错误均不自动重试。`proxy_url` 仅作用于项目 HTTP 客户端；未配置时，
+`use_environment_proxy=false` 使用项目内直连。
+
+```bash
+# 自然 OOD 路径：只有冻结检测器真正报警时才请求 GPT。
+rsi-loop evaluate --config configs/fold_clothes_live.local.toml \
+  --allow-live-gpt --output outputs/live_natural_01
+
+# 单独验证真实 GPT 接管：第 175 步增加一次明确标记的测试触发。
+# 保留 natural_alarm 与原始三项证据，不修改模型阈值。
+python tools/check_live_handoff.py --config configs/fold_clothes_live.local.toml \
+  --at-step 175 --allow-live-gpt --output outputs/live_handoff_01
+```
+
+第二条命令会产生真实 API 费用，但它只测试诊断、动作执行和交回 VLA，
+不能用来证明自然 OOD 检出率。此类轨迹带有 `control_test.json`，不得晋升
+为 VLA-only 成功示范。每次请求保存不含认证信息的 `api_request_*`、
+`api_response_*` 和 `api_attempt_*`，记录模型、耗时、usage 与 HTTP 状态；
+即使动作因越界、无法求解 IK 或 `unable` 被拒绝，模型回复仍保留。
+Responses 接口依据 [OpenAI Docs 的结构化输出](https://developers.openai.com/api/docs/guides/structured-outputs)
+和 [多图像输入](https://developers.openai.com/api/docs/guides/images-vision) 组织；
+第三方中转的可用模型、兼容性和收费必须以其实际响应为准。
+
+可离线查看实际多图像请求：
+
+```bash
+python tools/report_context.py --request outputs/live_handoff_01/recovery/api_request_000001.json \
+  --output outputs/live_handoff_01/request.html
+```
+
+2026-09-22 本机当前验收：27 项本地测试通过；原始 base 完整运行 500 步、
+50 次推理，原生任务失败、自然 OOD 报警 0 次，最大风险分位数约 0.225。
+两条成功采集轨迹的最大风险分位数约 0.609、0.551；这些结果说明原始
+实机校准分数尚不能直接用于该仿真任务，不能通过观察失败后降低阈值来
+声称检测改善。
+
+中转域名从本机直连超时；现有 18080 端口拒绝 CONNECT，未改动该服务。
+使用真实示范与现场观测尝试过一次 Responses 请求，90 秒后连接失败，
+没有模型回复，也没有 GPT 动作执行，模型可用性尚未核实。
+凭据不在仓库中。完整实测结果见
+[provider_validation_20260922.json](../provenance/provider_validation_20260922.json)。
+实际 GPT 接管验收需要先提供本机可用的项目级网络路径。
+
 ## 独立采集仿真成功示范
 
 默认 `configs/loop.toml` 继续使用指定的原始 `pi05_base`。由于原始 base 在
@@ -231,7 +302,7 @@ rsi-loop promote-demo --run outputs/demo_candidate_01 --output outputs/demos/fol
 
 ```bash
 python tools/run_unit_tests.py
-python -m pytest -q tests/test_control_loop.py tests/test_checkpoint_download.py
+python -m pytest -q tests/test_control_loop.py tests/test_checkpoint_download.py tests/test_provider.py
 rsi-verify --device cpu --output outputs/verification_conda_cpu.json
 rsi-verify --device cuda:0 --output outputs/verification_conda_cuda.json
 ```

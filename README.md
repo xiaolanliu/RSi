@@ -4,6 +4,8 @@
 
 已附 [pi05 自行采集的仿真参考示范](examples/demonstrations/README.md) 和 `configs/fold_clothes_context.toml`。示范来自单独标识的 RoboDojo 微调模型；主闭环默认权重保持原始 base。
 
+项目内 HahaModel Responses 配置见 [`configs/fold_clothes_haha.toml`](configs/fold_clothes_haha.toml)，密钥与代理设置不依赖全局 Codex 配置。操作步骤及真实 API 验收状态见 [项目内中转说明](docs/AGENT_LOOP.md#项目内-hahamodel-中转)：当前本机连接中转超时，真实 GPT 纠正尚未验证；原始 base 的失败仿真回合也未触发自然 OOD 报警。
+
 代码按用途分开：`rsi_loop/` 负责控制与仿真适配，`agent_closed_loop/` 保留监测器和必要训练模块，`compile/` 保留离线教师，`rsi_tools/` 负责冻结模型复现，`external/` 是忽略 Git 的固定版本第三方代码和资源。旧报告生成器与旧版本实验入口已删除，可在 Git 历史 `51b1da3` 中查阅。
 
 下文是原始 V11 权重的独立复现说明；仍可不安装仿真器，单独验证监测器。

@@ -152,6 +152,11 @@
       "sha256": "c79491570b04c07dfa08ab5b37f2218fd7283601c0b49e508d6d7eeea14ac0c7"
     },
     {
+      "path": "configs/fold_clothes_haha.toml",
+      "bytes": 1333,
+      "sha256": "12606ac0da7c40ee70b23387032f512f3b1a5a5903a876f99d6f8cc6d2961b39"
+    },
+    {
       "path": "configs/loop.toml",
       "bytes": 808,
       "sha256": "f31b6728d5caace89cb6eb3b095827a46858b665f4a272a7215434f4c1903837"
@@ -473,8 +478,8 @@
     },
     {
       "path": "rsi_loop/cli.py",
-      "bytes": 11589,
-      "sha256": "6e11537a72e96ab43c8783cfea20d3396c1ac5233774b543702d278590d5a131"
+      "bytes": 11419,
+      "sha256": "ac44318d67a0d2c1349f57ba64362d239242930522b323e04988f40d0914d3d3"
     },
     {
       "path": "rsi_loop/context.py",
@@ -507,9 +512,14 @@
       "sha256": "01c96a1965ec2d69419dd198f03dcd2005daf5872699216dc25a455b947843ad"
     },
     {
+      "path": "rsi_loop/providers.py",
+      "bytes": 2992,
+      "sha256": "7856764ee8ca894075b65b3662b77fd922f3144942e1034de743f67acea37071"
+    },
+    {
       "path": "rsi_loop/recovery.py",
-      "bytes": 7972,
-      "sha256": "a5087fe79a3a2d723ea61fce07a2994b9b01f57ccb6418b3422159fc0cb7a63a"
+      "bytes": 12926,
+      "sha256": "8a71bd159773e6d2ef7c6740fd6fe30bf23370d6517b7e4b3062c123af374fea"
     },
     {
       "path": "rsi_loop/simulator.py",

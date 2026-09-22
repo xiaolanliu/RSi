@@ -1,0 +1,160 @@
+{
+  "date": "2026-09-22",
+  "local_tests_passed": 27,
+  "project_provider": "haha",
+  "endpoint": "https://hahamodel.com/v1",
+  "global_configuration_changed": false,
+  "credential_value_in_git": false,
+  "credential_file_permission": "0600",
+  "connectivity": {
+    "endpoint": "https://hahamodel.com/v1",
+    "models_discovered": false,
+    "global_configuration_changed": false,
+    "reason": "TLS connection unavailable from this server",
+    "checked_routes": [
+      {
+        "route": "direct",
+        "dns_ipv4": "24.199.72.144",
+        "result": "TCP/TLS connection timeout"
+      },
+      {
+        "route": "existing localhost:18080 CONNECT",
+        "result": "403 Forbidden; no service changes made"
+      }
+    ],
+    "generation_request_attempts": 1,
+    "completed_generation_responses": 0,
+    "model_availability_verified": false
+  },
+  "api_probe": {
+    "kind": "recorded_simulation_context_probe",
+    "native_actions_executed": 0,
+    "model_availability_verified": false,
+    "completed": false,
+    "error_class": "URLError",
+    "request_attempts": 1
+  },
+  "api_attempt": {
+    "attempt": 1,
+    "model": "gpt-4.1",
+    "base_url": "https://hahamodel.com/v1",
+    "error": "URLError",
+    "elapsed_seconds": 90.04571802169085
+  },
+  "native_baseline": {
+    "reason": "native_terminal",
+    "steps": 500,
+    "vla_calls": 50,
+    "interventions": 0,
+    "executed_steps": {
+      "vla": 500,
+      "mock": 0,
+      "gpt": 0
+    },
+    "recovery_mode": "disabled",
+    "complete": true,
+    "native_success": false,
+    "elapsed_seconds": 230.65505175292492
+  },
+  "ood_comparison": [
+    {
+      "run": "live_validation_baseline_20260922",
+      "native": {
+        "complete": true,
+        "valid_for_success_rate": true,
+        "native_success": false,
+        "native_control_steps": 500,
+        "native_step_limit": 500,
+        "status": "native_completed",
+        "task": "fold_clothes"
+      },
+      "steps": 500,
+      "natural_alarm_steps": 0,
+      "maximum_risk_percentile": 0.2246376811594203,
+      "signals": {
+        "projection_distance": {
+          "maximum": 1.2696667909622192,
+          "p95": 1.165873396396637
+        },
+        "action_unit_repetition": {
+          "maximum": 1.9454035758972168,
+          "p95": 1.7277543783187865
+        },
+        "line_energy": {
+          "maximum": -6.2076921463012695,
+          "p95": -6.677322721481325
+        }
+      }
+    },
+    {
+      "run": "tuned_demo_candidate_01",
+      "native": {
+        "complete": true,
+        "valid_for_success_rate": true,
+        "native_success": true,
+        "native_control_steps": 286,
+        "native_step_limit": 500,
+        "status": "native_completed",
+        "task": "fold_clothes"
+      },
+      "steps": 286,
+      "natural_alarm_steps": 0,
+      "maximum_risk_percentile": 0.6086956521739131,
+      "signals": {
+        "projection_distance": {
+          "maximum": 1.282917857170105,
+          "p95": 1.0350434184074402
+        },
+        "action_unit_repetition": {
+          "maximum": 0.9855870604515076,
+          "p95": 0.583709716796875
+        },
+        "line_energy": {
+          "maximum": -2.3267855644226074,
+          "p95": -2.4278253316879272
+        }
+      }
+    },
+    {
+      "run": "tuned_demo_candidate_02",
+      "native": {
+        "complete": true,
+        "valid_for_success_rate": true,
+        "native_success": true,
+        "native_control_steps": 315,
+        "native_step_limit": 500,
+        "status": "native_completed",
+        "task": "fold_clothes"
+      },
+      "steps": 315,
+      "natural_alarm_steps": 0,
+      "maximum_risk_percentile": 0.5507246376811594,
+      "signals": {
+        "projection_distance": {
+          "maximum": 1.187551498413086,
+          "p95": 0.9617929100990296
+        },
+        "action_unit_repetition": {
+          "maximum": 1.3149195909500122,
+          "p95": 0.8266837775707248
+        },
+        "line_energy": {
+          "maximum": -2.4128060340881348,
+          "p95": -2.4607534885406492
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Live GPT diagnosis and native recovery remain unverified because the endpoint is unreachable.",
+    "Frozen real-robot RSI produced no alarm on the failed simulation episode; test injection is not detector validation."
+  ],
+  "release_checks": {
+    "artifact_hashes_verified": 111,
+    "original_three_model_hashes_unchanged": true,
+    "credential_scan_files_checked": 207,
+    "credential_matches": 0,
+    "compileall_passed": true,
+    "git_diff_check_passed": true
+  }
+}

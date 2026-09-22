@@ -3,9 +3,12 @@
 Read `README.md`, `docs/USAGE.md`, `docs/ARCHITECTURE.md`, then `docs/REPRODUCE.md`.
 For the integrated agent loop, also read `docs/AGENT_LOOP.md`. Run it in the
 `rsi` Python 3.11 conda environment. All worker processes use `sys.executable`.
-No GPT calls are authorized during integration verification. Default to mock;
-never read Codex/IDE credentials. Only the dedicated `RSI_SIM_OPENAI_API_KEY`
-may be used when the user subsequently requests live evaluation.
+Default to mock unless the user requests live evaluation. The user has now
+authorized live simulation through project provider `haha` at hahamodel.com/v1
+with dedicated `HAHA_API_KEY`. Never read or change Codex/IDE credentials,
+global provider settings, or global proxy environment. Keep secrets in ignored,
+mode-0600 `.env.local` or the selected environment variable, never in Git/logs.
+The original OpenAI endpoint uses dedicated `RSI_SIM_OPENAI_API_KEY` only.
 Work from the repository root unless explicitly passing absolute paths. Do not assume the original author's filesystem exists.
 
 ## Current release
