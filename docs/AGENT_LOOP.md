@@ -303,6 +303,15 @@ rsi-loop prepare-context --run outputs/fold_candidate_01 --step 175 \
 第 175 步只用于检查请求格式，未被当成故障起点标签或报警校准依据。
 
 仓库附有这条约 3.1 MB 的 [示范视频及来源](../examples/demonstrations/README.md)，
-克隆后可以直接用于参考输入。`configs/fold_clothes_context.toml` 已引用它，
-任务设为折衣、控制模型为原始 base，GPT 仍默认关闭。用户提供早期人工
+克隆后可以直接用于参考输入。另一个布局的
+`outputs/tuned_demo_candidate_02` 也在 315 步（12.60 秒）、32 次 VLA 推理后
+通过原生成功条件，没有接管。最终关键帧中袖子与下摆向内折叠，较示范 01
+平整，因此 `configs/fold_clothes_context.toml` 默认引用
+`examples/demonstrations/sim_fold_clothes_02/success.mp4`。
+第二条记录见 [sim_demonstration_layout1_20260922.json](../provenance/sim_demonstration_layout1_20260922.json)。
+复现第二条时，复制 `configs/collect_demo.toml` 为本机配置，仅将
+`layout_id` 改成 `1`，再通过 `evaluate --config` 指定该文件并使用新输出目录。
+两次采集成功不代表总体成功率，冻结 RSI 的仿真检测能力仍需独立评估与校准。
+
+该参考配置的任务设为折衣、控制模型为原始 base，GPT 仍默认关闭。用户提供早期人工
 成功示教后，只需替换 `gpt.demo_mp4` 与可选 `system_prompt_file`。

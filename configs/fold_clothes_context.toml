@@ -28,5 +28,5 @@ model = ""
 base_url = "https://api.openai.com/v1"
 key_env = "RSI_SIM_OPENAI_API_KEY"
 timeout = 60
-demo_mp4 = "examples/demonstrations/sim_fold_clothes_01/success.mp4"
+demo_mp4 = "examples/demonstrations/sim_fold_clothes_02/success.mp4"
 # system_prompt_file = "/absolute/path/to/SYSTEM_PROMPT.txt"

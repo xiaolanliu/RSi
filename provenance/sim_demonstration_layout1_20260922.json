@@ -1,0 +1,64 @@
+{
+  "date": "2026-09-22",
+  "task": "fold_clothes",
+  "layout_group": 0,
+  "layout_id": 1,
+  "external_gpt_api_calls": 0,
+  "model": {
+    "checkpoint": "external/checkpoints/robodojo_pi05_sim_59999",
+    "source": "https://modelscope.cn/datasets/RoboDojo-Benchmark/RoboDojo/tree/master/ckpt/RoboDojo/Pi_05/RoboDojo-sim-arx_x5-joint-0/59999",
+    "checkpoint_kind": "demo",
+    "identity_manifest_sha256": "2b1505e7b225e05fca28aebcb61d54b917ef2e09a2ed57f75eeb9080f42ab452",
+    "normalization_asset": "arx_x5_sim",
+    "normalization_path": null,
+    "normalization_sha256": "ad7dea3e3d2bcdb348945fe03422ab1adccd03baf67318b1a1d153dfe8694db5",
+    "action_horizon": 50,
+    "action_dim": 14,
+    "output": "absolute_joint_targets_with_absolute_grippers",
+    "benchmark_finetuned": true,
+    "role": "demonstration_collection"
+  },
+  "loop": {
+    "reason": "native_terminal",
+    "steps": 315,
+    "vla_calls": 32,
+    "interventions": 0,
+    "executed_steps": {
+      "vla": 315,
+      "mock": 0,
+      "gpt": 0
+    },
+    "recovery_mode": "disabled",
+    "complete": true,
+    "native_success": true,
+    "elapsed_seconds": 189.8757186383009
+  },
+  "native": {
+    "complete": true,
+    "valid_for_success_rate": true,
+    "native_success": true,
+    "native_control_steps": 315,
+    "native_step_limit": 500,
+    "status": "native_completed",
+    "task": "fold_clothes"
+  },
+  "simulated_seconds": 12.6,
+  "natural_alarm_steps": 0,
+  "maximum_risk_percentile": 0.5507246376811594,
+  "demonstration": {
+    "sha256": "25f587d738c75958f96da4af8ded1564e483ca3a9095936e617e2f842f9d47e8",
+    "bytes": 4165766,
+    "source": "benchmark_finetuned_pi05_native_success",
+    "quality": "Native task success; final frame shows sleeves and hem folded inward. Preferred bootstrap reference; not the original human demonstration."
+  },
+  "not_a_success_rate_benchmark": true,
+  "default_controller_checkpoint_unchanged": "gs://openpi-assets/checkpoints/pi05_base",
+  "context_verification": {
+    "passed": true,
+    "images": 14,
+    "demo_frames": 8,
+    "native_success": true,
+    "checkpoint_kind": "demo",
+    "api_calls": 0
+  }
+}

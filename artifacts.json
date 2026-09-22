@@ -18,8 +18,8 @@
     },
     {
       "path": "examples/demonstrations/README.md",
-      "bytes": 975,
-      "sha256": "10ce7e525501786b6b2cad78fa1e6649587cedfa14ff7ff07be390e8f0c738bb"
+      "bytes": 1157,
+      "sha256": "942c0c31dfc6a8fbd8fdad79415e043278dedbc28bde3118ffe5fda07fa1578d"
     },
     {
       "path": "examples/demonstrations/sim_fold_clothes_01/provenance.json",
@@ -30,6 +30,16 @@
       "path": "examples/demonstrations/sim_fold_clothes_01/success.mp4",
       "bytes": 3096628,
       "sha256": "c08a3604ec3c88dd7e2ea920f0f56eed438bd1a37db33bb718c918119086f89e"
+    },
+    {
+      "path": "examples/demonstrations/sim_fold_clothes_02/provenance.json",
+      "bytes": 2417,
+      "sha256": "5ed78943f30ed94a7c710be1480423296eaaaacf6e8732fc83c35b9b27cd30f9"
+    },
+    {
+      "path": "examples/demonstrations/sim_fold_clothes_02/success.mp4",
+      "bytes": 4165766,
+      "sha256": "25f587d738c75958f96da4af8ded1564e483ca3a9095936e617e2f842f9d47e8"
     },
     {
       "path": "examples/episodes/data_open_long_sleeve_0806_lerobot_dc230203_ep000043.npz",
@@ -139,7 +149,7 @@
     {
       "path": "configs/fold_clothes_context.toml",
       "bytes": 933,
-      "sha256": "e98beb555ee95a6a70236774f4929955ecfe28e6052c6f59d6ce9729ec6ce0b5"
+      "sha256": "c79491570b04c07dfa08ab5b37f2218fd7283601c0b49e508d6d7eeea14ac0c7"
     },
     {
       "path": "configs/loop.toml",
