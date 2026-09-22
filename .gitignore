@@ -16,3 +16,6 @@ dataset_paths.json
 .DS_Store
 node_modules/
 package-lock.json
+external/
+resources.local.json
+*.local.toml

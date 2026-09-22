@@ -1,0 +1,273 @@
+{
+  "date": "2026-09-22",
+  "external_gpt_api_calls": 0,
+  "model_mechanism_tests": 36,
+  "control_contract_tests": 15,
+  "checkpoint": "gs://openpi-assets/checkpoints/pi05_base",
+  "benchmark_finetuned": false,
+  "simulation_normalizer": {
+    "url": "https://modelscope.cn/api/v1/datasets/RoboDojo-Benchmark/RoboDojo/repo?Revision=master&FilePath=ckpt/RoboDojo/Pi_05/RoboDojo-sim-arx_x5-joint-0/59999/assets/arx_x5_sim/norm_stats.json",
+    "sha256": "ad7dea3e3d2bcdb348945fe03422ab1adccd03baf67318b1a1d153dfe8694db5",
+    "role": "RoboDojo normal-training action/state scaling; original base model weights unchanged"
+  },
+  "cpu_parity": {
+    "passed": true,
+    "device": "cpu",
+    "python": "3.11.14",
+    "torch": "2.7.0+cu126",
+    "numpy": "1.26.0",
+    "records": [
+      {
+        "id": "data_open_long_sleeve_0806_lerobot_dc230203_ep000043",
+        "frames": 950,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "test_lwy_ep000000",
+        "frames": 1485,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "test_lwy_ep000001",
+        "frames": 1308,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "test_lwy_ep000002",
+        "frames": 3225,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "pant_fail_ep000000",
+        "frames": 2018,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "pant_fail_ep000001",
+        "frames": 2164,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "pant_fail_ep000002",
+        "frames": 681,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "pant_fail_ep000003",
+        "frames": 553,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "offline_pants_0820_ep000003",
+        "frames": 1164,
+        "mode": "offline",
+        "passed": true
+      }
+    ],
+    "frames": 13548,
+    "float_tolerances": {
+      "atol": 8e-05,
+      "rtol": 0.0003
+    },
+    "offline_reference": "Independent original-source CPU reference",
+    "checks": [
+      "artifact SHA256",
+      "2000 epoch encoder identity",
+      "complete trajectory golden outputs",
+      "exact alarm and stage sequences",
+      "three signals only",
+      "reset and prefix equality",
+      "no stage regression or skip",
+      "raw state layout adaptation",
+      "offline boundaries"
+    ]
+  },
+  "cuda_parity": {
+    "passed": true,
+    "device": "cuda:0",
+    "python": "3.11.14",
+    "torch": "2.7.0+cu126",
+    "numpy": "1.26.0",
+    "records": [
+      {
+        "id": "data_open_long_sleeve_0806_lerobot_dc230203_ep000043",
+        "frames": 950,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "test_lwy_ep000000",
+        "frames": 1485,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "test_lwy_ep000001",
+        "frames": 1308,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "test_lwy_ep000002",
+        "frames": 3225,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "pant_fail_ep000000",
+        "frames": 2018,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "pant_fail_ep000001",
+        "frames": 2164,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "pant_fail_ep000002",
+        "frames": 681,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "pant_fail_ep000003",
+        "frames": 553,
+        "mode": "online",
+        "passed": true
+      },
+      {
+        "id": "offline_pants_0820_ep000003",
+        "frames": 1164,
+        "mode": "offline",
+        "passed": true
+      }
+    ],
+    "frames": 13548,
+    "float_tolerances": {
+      "atol": 8e-05,
+      "rtol": 0.0003
+    },
+    "offline_reference": "Original CUDA TF32 report",
+    "checks": [
+      "artifact SHA256",
+      "2000 epoch encoder identity",
+      "complete trajectory golden outputs",
+      "exact alarm and stage sequences",
+      "three signals only",
+      "reset and prefix equality",
+      "no stage regression or skip",
+      "raw state layout adaptation",
+      "offline boundaries"
+    ]
+  },
+  "native_source_verification": {
+    "IsaacLab": {
+      "commit": "afca7b09d60d8beb9c1cb28b43066499940b969b",
+      "verified_files": 1132,
+      "unexpected_modifications": [],
+      "missing_runtime_code": [],
+      "documented_patch": "Starlette metadata only"
+    },
+    "curobo": {
+      "commit": "d17b54ce32cba095c0b000c4c58777075d11de0e",
+      "verified_files": 659,
+      "unexpected_modifications": [],
+      "missing_runtime_code": [],
+      "documented_patch": null
+    }
+  },
+  "handoff_test": {
+    "test_only": true,
+    "api_calls": 0,
+    "injected_step": 32,
+    "purpose": "native command handoff, not detection accuracy or recovery skill",
+    "passed": true,
+    "discarded_vla_actions": 8,
+    "resumed_at": 35,
+    "fresh_inference_steps": [
+      0,
+      10,
+      20,
+      30,
+      35,
+      45,
+      55
+    ]
+  },
+  "demonstration_count": 0,
+  "not_a_benchmark": true,
+  "rollouts": [
+    {
+      "run": "vla_candidate_02",
+      "layout_group": 0,
+      "layout_id": 0,
+      "loop": {
+        "reason": "native_terminal",
+        "steps": 1050,
+        "vla_calls": 105,
+        "interventions": 0,
+        "executed_steps": {
+          "vla": 1050,
+          "mock": 0,
+          "gpt": 0
+        },
+        "recovery_mode": "disabled",
+        "complete": true,
+        "native_success": false,
+        "elapsed_seconds": 434.69744496047497
+      },
+      "native": {
+        "complete": true,
+        "valid_for_success_rate": true,
+        "native_success": false,
+        "native_control_steps": 1050,
+        "native_step_limit": 1050,
+        "status": "native_completed",
+        "task": "build_tower"
+      },
+      "natural_alarm_steps": 0,
+      "maximum_risk_percentile": 0.14492753623188404
+    },
+    {
+      "run": "fold_candidate_01",
+      "layout_group": 0,
+      "layout_id": 0,
+      "loop": {
+        "reason": "native_terminal",
+        "steps": 500,
+        "vla_calls": 50,
+        "interventions": 0,
+        "executed_steps": {
+          "vla": 500,
+          "mock": 0,
+          "gpt": 0
+        },
+        "recovery_mode": "disabled",
+        "complete": true,
+        "native_success": false,
+        "elapsed_seconds": 235.76850859075785
+      },
+      "native": {
+        "complete": true,
+        "valid_for_success_rate": true,
+        "native_success": false,
+        "native_control_steps": 500,
+        "native_step_limit": 500,
+        "status": "native_completed",
+        "task": "fold_clothes"
+      },
+      "natural_alarm_steps": 0,
+      "maximum_risk_percentile": 0.4963768115942029
+    }
+  ]
+}

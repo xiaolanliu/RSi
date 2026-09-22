@@ -2,7 +2,7 @@
 from collections import deque
 import numpy as np
 import torch
-from .fit_ood_v4 import load,inference_precision
+from .model_io import load,inference_precision
 from .streaming_fusion import SharedFusion,FusionConfig,readout_disagreement
 from .temporal_evidence import HistoryEvidence
 from .uncertainty_ood import FeatureLINe,SingleRiskHead

@@ -1,20 +1,26 @@
 """Release maintainer helper: inventory shipped models, fixtures and code."""
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
+portable = set(subprocess.check_output(
+    ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=root
+).decode().split("\0"))
 expected = {
     "models/v11/fold_all.pt": "ada56140c49fca0eec050a21a47f662a6d091f2500cbf75521566293095e555c",
     "models/encoder_2000/checkpoint_epoch_2000.pt": "a1da8b8eeb9731880598a0fc112f8273368801ed96c782d3a541ca559bdd80e5",
     "models/offline_2000/checkpoint_epoch_2000.pt": "0f199269ac8006e75794fbcfd38876f03ed15ac78edcc335157d247639b90fcb",
 }
 entries = []
-for folder in ("models", "examples", "configs", "agent_closed_loop", "compile", "rsi_tools", "third_party"):
+for folder in ("models", "examples", "configs", "agent_closed_loop", "compile", "rsi_tools", "rsi_loop", "third_party"):
     for path in sorted((root / folder).rglob("*")):
         if not path.is_file() or "__pycache__" in path.parts:
             continue
         key = str(path.relative_to(root))
+        if key not in portable:
+            continue
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         if key in expected and digest != expected[key]:
             raise AssertionError(f"Original release checkpoint changed: {key}")

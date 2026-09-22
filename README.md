@@ -1,4 +1,10 @@
-# RSi — 在线阶段识别与三信号 OOD 监测
+# RSi — VLA 默认控制、OOD 监测与短时恢复
+
+当前开发入口是 [仿真闭环操作说明](docs/AGENT_LOOP.md)：统一 `rsi` conda 环境，RoboDojo 原生仿真，官方 pi05_base，V11 RSI，以及参考 GPT-Policy 的示范视频上下文。默认只测试本地 mock 恢复，GPT 网络调用关闭。
+
+代码按用途分开：`rsi_loop/` 负责控制与仿真适配，`agent_closed_loop/` 保留监测器和必要训练模块，`compile/` 保留离线教师，`rsi_tools/` 负责冻结模型复现，`external/` 是忽略 Git 的固定版本第三方代码和资源。旧报告生成器与旧版本实验入口已删除，可在 Git 历史 `51b1da3` 中查阅。
+
+下文是原始 V11 权重的独立复现说明；仍可不安装仿真器，单独验证监测器。
 
 这是 `Agent_closed_loop` 当前 **V11** 的独立复现仓库，同时保留原始离线 CompILE **epoch 2000** 和在线编码器 **epoch 2000** 权重。克隆后即可在 CPU 上回放真实轨迹、核对逐帧结果，不需要原开发机器、COMPILE/SIEVE 目录、机器人、URDF 或下载视觉大模型。
 
@@ -6,13 +12,14 @@ RSi provides a frozen V11 streaming subtask/OOD monitor, both original epoch-200
 
 ## 1. 十分钟内开始复现
 
-推荐 Linux + Python 3.10。在仓库根目录执行：
+本机统一使用 `conda activate rsi`；已安装环境可直接从校验命令开始。
+以下是其他机器只复现监测器的轻量 conda 安装方式（完整仿真环境见上文）：
 
 ```bash
 git clone https://github.com/xiaolanliu/RSi.git
 cd RSi
-python3.10 -m venv .venv
-source .venv/bin/activate
+conda create -n rsi python=3.10 pip -y
+conda activate rsi
 python -m pip install --upgrade pip
 python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
 python -m pip install -r requirements-full.txt
@@ -45,7 +52,7 @@ EP0 应输出 `frames=2018`、`first_alarm_frame=303`（10.10 秒）、`alarm_fr
 | [`models/encoder_2000/checkpoint_epoch_2000.pt`](models/encoder_2000/checkpoint_epoch_2000.pt) | 正常数据蒸馏 2000 轮的 128 维因果编码器；参数与 V11 内编码器逐项相同 | 需阶段头与 OOD 配置 |
 | [`models/offline_2000/checkpoint_epoch_2000.pt`](models/offline_2000/checkpoint_epoch_2000.pt) | 原始离线 CompILE 教师；完整 episode 分成五个阶段 | 离线分段模型 |
 
-权重保持原始字节，直接存储在 Git 中，不是 LFS 指针。SHA256、大小和样例指纹见 [`artifacts.json`](artifacts.json)。这里不包含 pi0.5 动作生成模型权重；RSi 是监测器。
+权重保持原始字节，直接存储在 Git 中，不是 LFS 指针。SHA256、大小和样例指纹见 [`artifacts.json`](artifacts.json)。pi0.5 和 Wan 大权重通过显式资源路径加载，不提交进 Git。
 
 ## 3. 阅读顺序
 

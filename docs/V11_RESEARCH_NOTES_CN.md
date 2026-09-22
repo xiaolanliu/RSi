@@ -2,6 +2,9 @@
 
 > 历史研究记录：下文的 `reports/`、`runs/` 和原始命令日志路径属于原开发项目，未整体打包。本仓库的可执行复现入口见 [使用说明](USAGE.md)，完整评估摘要见 [发布前评估](../provenance/v11_evaluation.json)。本记录保留结论与参数出处，不要求其他机器具备原开发目录。
 
+旧审计/网页生成入口已移除，可在 Git 提交 `51b1da3` 查阅。正式回放使用
+`rsi-replay`，新闭环操作见 [AGENT_LOOP.md](AGENT_LOOP.md)。真实命令仍未加入冻结 V11 报警模型。
+
 正式模型：`models/v11/fold_all.pt`。交互报告：`reports/command_constraints_v11_20260921/index.html`。
 真实命令审计：`reports/command_constraints_v11_20260921/command_audit/index.html`。
 

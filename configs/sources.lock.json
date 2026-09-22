@@ -1,0 +1,8 @@
+{
+  "gpt-policy": {"repo": "cheng-haha/GPT-Policy", "commit": "4c43e57833d4314b066d386935e814d06940d027"},
+  "robodojo": {"repo": "RoboDojo-Benchmark/RoboDojo", "commit": "726e9aabfaa642203722eb126f5eaf0f37f3e1ad"},
+  "openpi": {"repo": "Physical-Intelligence/openpi", "commit": "215abfb217dbac7d5f1273282331b9b1866c0479"},
+  "robodojo/XPolicyLab": {"repo": "XPolicyLab/XPolicyLab", "commit": "bb9a0b5f5136a74503b679af830bfd0a3a837d5c"},
+  "robodojo/third_party/IsaacLab": {"repo": "yuechen0614/IsaacLab", "commit": "afca7b09d60d8beb9c1cb28b43066499940b969b"},
+  "robodojo/third_party/curobo": {"repo": "yuechen0614/curobo", "commit": "d17b54ce32cba095c0b000c4c58777075d11de0e"}
+}

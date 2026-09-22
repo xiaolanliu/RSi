@@ -117,6 +117,11 @@
       "sha256": "23c91b88ebc835b95936217689fbab082c67a21fd51db7818fe4c4f4a975e369"
     },
     {
+      "path": "configs/loop.toml",
+      "bytes": 808,
+      "sha256": "f31b6728d5caace89cb6eb3b095827a46858b665f4a272a7215434f4c1903837"
+    },
+    {
       "path": "configs/offline_model.json",
       "bytes": 2419,
       "sha256": "442dab8f0cefed3ddd2340253601e59a42b61947315415a1fb2aac3838f53468"
@@ -130,6 +135,26 @@
       "path": "configs/online_data_index.json",
       "bytes": 845108,
       "sha256": "07f3cd377a230bdf6237b2b6e55ed8f46ef643d0eff3a4fa916217dec4915c83"
+    },
+    {
+      "path": "configs/pi05_base_identity.json",
+      "bytes": 4891,
+      "sha256": "5c3c2076bb3825b247d217d7c302a3eb78d9e43035410c890d18a824e732144d"
+    },
+    {
+      "path": "configs/resources.example.json",
+      "bytes": 382,
+      "sha256": "1f6ef44a7b598594f069908cddd5aa00145c325f219e8ea0f16d951485be8807"
+    },
+    {
+      "path": "configs/sim_normalization.json",
+      "bytes": 377,
+      "sha256": "59cc4252bd10bebe58f12cf7f8fe113159851245d14f81afcec7f53b786e341a"
+    },
+    {
+      "path": "configs/sources.lock.json",
+      "bytes": 681,
+      "sha256": "f10fdc0dc86008207dbf5c04babe9d2237213b1779e2bf5a444c5132a747f7ae"
     },
     {
       "path": "configs/v11_runtime.json",
@@ -147,39 +172,9 @@
       "sha256": "5d6492de62633a753d854a99bd702555417cbb764c39e1b75b4de1b494135f19"
     },
     {
-      "path": "agent_closed_loop/audit_action_dynamics.py",
-      "bytes": 7144,
-      "sha256": "194cec6b10bf280b7b710e6f6b877cb73e7ceac947bcade02de80c48c337743a"
-    },
-    {
-      "path": "agent_closed_loop/audit_alarm_latency.py",
-      "bytes": 6477,
-      "sha256": "0d0c6cdbf48d1bd733cc16132c2044f64387a91f5ff113be451da4e54a7160f8"
-    },
-    {
-      "path": "agent_closed_loop/audit_command_logs.py",
-      "bytes": 14075,
-      "sha256": "1f0bfb680e3f7e3969b1b463b9ba425d85ef56699828e71832185aaf8c9a66ac"
-    },
-    {
-      "path": "agent_closed_loop/benchmark_online_subtask.py",
-      "bytes": 6688,
-      "sha256": "760e00092d8f25ba88fd2f06889e1b8fb1fce6ba4ee3b3a2af3e75191c99de2f"
-    },
-    {
-      "path": "agent_closed_loop/benchmark_ood_v4.py",
-      "bytes": 5942,
-      "sha256": "99e65b4f302c2c895d8cda92ccbd42659930bdf4a94173b215b6e303b1c057a1"
-    },
-    {
       "path": "agent_closed_loop/cache_wan_visual.py",
       "bytes": 8425,
       "sha256": "dfba5fe5decd7d2db50cae97b54089a26f316f91477f283c2c5667bc8f4808a3"
-    },
-    {
-      "path": "agent_closed_loop/calibrate_duration_subtask.py",
-      "bytes": 3591,
-      "sha256": "9f5d87e01fcb88a968ded83b08d8e146829bef25f2d0fc3ebe1c1e6f32999d94"
     },
     {
       "path": "agent_closed_loop/change_subtask.py",
@@ -197,29 +192,9 @@
       "sha256": "2780c7d71740344df4f6095efd823389d293c0242780ea5ede320ae55a4904f1"
     },
     {
-      "path": "agent_closed_loop/diagnose_ood_v4_visual.py",
-      "bytes": 8390,
-      "sha256": "3188de85f411745339c04163de770f190ae355e9b2a2da81ad185b961ac0b908"
-    },
-    {
       "path": "agent_closed_loop/duration_subtask.py",
       "bytes": 6315,
       "sha256": "a30f2e67eaeb35a9a12d3afc97c87d0493605211af71d4c3601ee9684bffe6fe"
-    },
-    {
-      "path": "agent_closed_loop/evaluate_change_subtask.py",
-      "bytes": 9759,
-      "sha256": "f52b07b13ab69b8b7d80c1cb7e6e0929c7c246d370039fa28c9e55ee0951cd20"
-    },
-    {
-      "path": "agent_closed_loop/evaluate_duration_subtask.py",
-      "bytes": 3943,
-      "sha256": "5f4babba5281a2b65757a13ca3695c66dffd98896a47ba57467efe4e9b51d36f"
-    },
-    {
-      "path": "agent_closed_loop/evaluate_external.py",
-      "bytes": 14840,
-      "sha256": "a9ad1d4012374dca10f7c8fd4b23283fdf2b65f5d998ed2d6f46c0cb59b71a36"
     },
     {
       "path": "agent_closed_loop/export_bundle.py",
@@ -252,29 +227,19 @@
       "sha256": "ca7d4ddec82810bd57cc41239d021f895ffbe4d4161d15bf6d0e26e6dbfb62d7"
     },
     {
-      "path": "agent_closed_loop/merge_external_latency.py",
-      "bytes": 3411,
-      "sha256": "7c86030f67d60deaf39e4a55d90c7fc8994e1d320911898b929d79eb889c909b"
+      "path": "agent_closed_loop/model_io.py",
+      "bytes": 397,
+      "sha256": "aeef2a0f52c2d039e9839a9056653288097e679ddc8e9054e71dd4e967fcc7ee"
     },
     {
       "path": "agent_closed_loop/monitor.py",
-      "bytes": 9647,
-      "sha256": "c838f5f6401414a60ac2b51ef63e90fc4498b2b1362058a726975804e55882f8"
+      "bytes": 9645,
+      "sha256": "5e2aae6975bd882b241e19e9063e3643ccbe45302bcb0a6387d239f9605a9b03"
     },
     {
       "path": "agent_closed_loop/online_subtask.py",
       "bytes": 5251,
       "sha256": "05e46e094394d49328bdfc6d8ca3e77903cf39047a4cf3c284420b31215090b8"
-    },
-    {
-      "path": "agent_closed_loop/online_subtask_inference.py",
-      "bytes": 4414,
-      "sha256": "3e4faff37dcde9e22f2da894db44f488dc181a1122a50d9ea35af3a15671c703"
-    },
-    {
-      "path": "agent_closed_loop/ood_v4_inference.py",
-      "bytes": 5457,
-      "sha256": "f490ec8af89f033f405aa36e69f0b47318796dbeb295430414ada247a36ee18e"
     },
     {
       "path": "agent_closed_loop/paths.py",
@@ -287,11 +252,6 @@
       "sha256": "d240f8511d8f0987fea73ce60f6cd4229c5b3e9b6d9744633a42f16b51e6fe29"
     },
     {
-      "path": "agent_closed_loop/profile_external.py",
-      "bytes": 12066,
-      "sha256": "2731bb564c2f308ab84d5b89570ecf6f0829ab0587d0635031cebcaac9668249"
-    },
-    {
       "path": "agent_closed_loop/recovery.py",
       "bytes": 5995,
       "sha256": "63848f785a4e8d7c646a21bb439fbea7a8c90f8a5e3f1f51c11892fb8e65b260"
@@ -300,31 +260,6 @@
       "path": "agent_closed_loop/recovery_features.py",
       "bytes": 7886,
       "sha256": "5c9838b2dc46621b332e5517251401f878ae5d4fb705848d310ee5299b1ab97f"
-    },
-    {
-      "path": "agent_closed_loop/report_change_memory.py",
-      "bytes": 6517,
-      "sha256": "ff0ebc9a92279c6f9a8a5ac35a9b0989da778a1a56750d3d4a4da5a1be7ed414"
-    },
-    {
-      "path": "agent_closed_loop/report_duration_subtask.py",
-      "bytes": 6479,
-      "sha256": "89b563d5a4a0da5a7ae4dab9ace6dc6b73ce52851ed6bbe7dee2cd9ce7bfc3af"
-    },
-    {
-      "path": "agent_closed_loop/report_online_subtask.py",
-      "bytes": 8646,
-      "sha256": "569be0c9c56059c9ba0eac823fbebbb5f0fb80631d579fe8d13661c00b168321"
-    },
-    {
-      "path": "agent_closed_loop/report_ood_v4.py",
-      "bytes": 19975,
-      "sha256": "f050b00a7cd9f3a4d791d287c74f426d4d9ab229ad43ce6c873496234640a94a"
-    },
-    {
-      "path": "agent_closed_loop/report_three_signal_ood.py",
-      "bytes": 18295,
-      "sha256": "88d06edf75409869921cb649fe670d98138a288015f6ae4a7ba4076232d4f8fd"
     },
     {
       "path": "agent_closed_loop/streaming_fusion.py",
@@ -342,24 +277,9 @@
       "sha256": "df8b0e51839a9372a06ee7dc110bd610442151db2398dc338eef4461f77cb71d"
     },
     {
-      "path": "agent_closed_loop/train_change_memory.py",
-      "bytes": 7153,
-      "sha256": "a2534893acf9bb369f9136c6687c20a72c6b13e983f011dc510b47ecef148fb0"
-    },
-    {
-      "path": "agent_closed_loop/train_change_subtask.py",
-      "bytes": 6966,
-      "sha256": "d0437765404a14ac229fa4d4938301397f035955fb0e9acd19a58282fc116bfd"
-    },
-    {
       "path": "agent_closed_loop/train_duration_subtask.py",
       "bytes": 5167,
       "sha256": "4016ea60e9df16f1df5c006c3735a9692240ee82af97775492127dd724f3fdc8"
-    },
-    {
-      "path": "agent_closed_loop/train_online_ood.py",
-      "bytes": 12056,
-      "sha256": "533ba7c98e3d2d1db232ba47d69ba3758d3e7aa11b4855aae688ef49bbb6850d"
     },
     {
       "path": "agent_closed_loop/train_online_subtask.py",
@@ -505,6 +425,61 @@
       "path": "rsi_tools/verify.py",
       "bytes": 4690,
       "sha256": "ebfefeccf601ed5bd475955fb819cca74e80b74cce72785b4b141c67c04baf2d"
+    },
+    {
+      "path": "rsi_loop/__init__.py",
+      "bytes": 152,
+      "sha256": "24f02ab3ffc667a0e17625c711e68a338150f17c4033dd29f823f336a227fa6d"
+    },
+    {
+      "path": "rsi_loop/cli.py",
+      "bytes": 10752,
+      "sha256": "8dc211ba1e6b654793bdb0f5be24ba4438f1099ed43bcd4aa4d67937ad356b77"
+    },
+    {
+      "path": "rsi_loop/contracts.py",
+      "bytes": 1869,
+      "sha256": "40288edc9536e8b192dad29dfdb44b9ce40c03558797c4594e870d0ea9abeec4"
+    },
+    {
+      "path": "rsi_loop/controller.py",
+      "bytes": 6986,
+      "sha256": "1be6542db81871bdca093a0b7b3b7b907c50d7a174efc0457c1a04ed1ae8d209"
+    },
+    {
+      "path": "rsi_loop/demonstration.py",
+      "bytes": 3159,
+      "sha256": "5d9ef9e455a4696c9d33d66231bacde6ae69c36f53dd11aaa8b05d04e82422c2"
+    },
+    {
+      "path": "rsi_loop/kinematics.py",
+      "bytes": 5381,
+      "sha256": "b83f01ab11668c7e5f5017f1cfe05f0e64928665db39cea6e124329d4c0d0492"
+    },
+    {
+      "path": "rsi_loop/monitor.py",
+      "bytes": 4102,
+      "sha256": "01c96a1965ec2d69419dd198f03dcd2005daf5872699216dc25a455b947843ad"
+    },
+    {
+      "path": "rsi_loop/recovery.py",
+      "bytes": 7768,
+      "sha256": "1f233c17a4307b146fa93e4709b7ece4e9a3db5094fc212c338ea57542966589"
+    },
+    {
+      "path": "rsi_loop/simulator.py",
+      "bytes": 10389,
+      "sha256": "9b03940bffce8494ccd593d37b7257a09ee989c6d72539d39dcaaf8e96c1b5b3"
+    },
+    {
+      "path": "rsi_loop/vla.py",
+      "bytes": 4806,
+      "sha256": "1ac9e675e0017d8d0c2be37aa9ef34785fbaf9f73521bae7f2976304340430e7"
+    },
+    {
+      "path": "rsi_loop/workers.py",
+      "bytes": 3549,
+      "sha256": "a3fb30ded190ac4eaf39337e4ed310cd3d4dd1a229c215e7b77a9f06ac159912"
     },
     {
       "path": "third_party/__init__.py",

@@ -1,0 +1,5 @@
+{
+  "url": "https://modelscope.cn/api/v1/datasets/RoboDojo-Benchmark/RoboDojo/repo?Revision=master&FilePath=ckpt/RoboDojo/Pi_05/RoboDojo-sim-arx_x5-joint-0/59999/assets/arx_x5_sim/norm_stats.json",
+  "sha256": "ad7dea3e3d2bcdb348945fe03422ab1adccd03baf67318b1a1d153dfe8694db5",
+  "role": "RoboDojo normal-training action/state scaling; original base model weights unchanged"
+}
