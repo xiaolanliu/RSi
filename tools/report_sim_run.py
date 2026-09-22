@@ -16,22 +16,25 @@ def report(run):
     if not events:
         raise ValueError("No executed observations to plot")
     time = np.asarray([e["time"] for e in events])
-    fig, axes = plt.subplots(4, 1, figsize=(12, 9), sharex=True, layout="constrained")
-    axes[0].plot(time, [e["risk"]["risk_percentile"] for e in events], label="Frozen RSI risk percentile")
-    axes[0].plot(time, [int(e["alarm"]) for e in events], alpha=.5, label="Alarm bit used by controller")
-    axes[0].set_ylim(-.03, 1.03)
-    axes[0].legend(loc="upper left")
-    for ax, key in zip(axes[1:], ("projection_distance", "action_unit_repetition", "line_energy")):
-        ax.plot(time, [e["risk"]["ood_signals"][key] for e in events])
-        ax.set_ylabel(key.replace("_", " "))
-    for ax in axes:
-        for e in events:
-            if e["source"] != "vla":
-                ax.axvspan(e["time"], e["time"]+.04, color="orange", alpha=.2)
-        ax.grid(alpha=.2)
-    axes[-1].set_xlabel("Native simulation time (seconds)")
-    fig.savefig(run/"ood_evidence.png", dpi=140)
-    plt.close(fig)
+    evidence = '<p>本次为 π0.5 独立采集，未运行 OOD 监测；没有 OOD 分数。</p>'
+    if all("ood_signals" in e["risk"] for e in events):
+        fig, axes = plt.subplots(4, 1, figsize=(12, 9), sharex=True, layout="constrained")
+        axes[0].plot(time, [e["risk"]["risk_percentile"] for e in events], label="Frozen RSI risk percentile")
+        axes[0].plot(time, [int(e["alarm"]) for e in events], alpha=.5, label="Alarm bit used by controller")
+        axes[0].set_ylim(-.03, 1.03)
+        axes[0].legend(loc="upper left")
+        for ax, key in zip(axes[1:], ("projection_distance", "action_unit_repetition", "line_energy")):
+            ax.plot(time, [e["risk"]["ood_signals"][key] for e in events])
+            ax.set_ylabel(key.replace("_", " "))
+        for ax in axes:
+            for e in events:
+                if e["source"] != "vla":
+                    ax.axvspan(e["time"], e["time"]+.04, color="orange", alpha=.2)
+            ax.grid(alpha=.2)
+        axes[-1].set_xlabel("Native simulation time (seconds)")
+        fig.savefig(run/"ood_evidence.png", dpi=140)
+        plt.close(fig)
+        evidence = '<img src="ood_evidence.png" alt="三项 OOD 证据与报警">'
     states, physical = [], []
     for event in events:
         with np.load(run/"observations"/f'{event["step"]:06d}.npz') as obs:
@@ -74,7 +77,7 @@ def report(run):
 <h1>{html.escape(run.name)}</h1><p class="note">{warning} 当前 RSI 来自实机折衣数据，未完成仿真任务校准。无报警不等于任务正常；任务成功只读取原生判定。</p>
 <video controls preload="metadata" src="sensors.mp4"></video>
 <p>视角顺序：顶视、左腕、右腕。图表橙色区间表示由恢复策略执行。</p>
-<img src="ood_evidence.png" alt="三项 OOD 证据与报警"><img src="robot_state.png" alt="关节与夹爪状态">
+{evidence}<img src="robot_state.png" alt="关节与夹爪状态">
 <h2>原始结果</h2><pre>{html.escape(json.dumps(records,ensure_ascii=False,indent=2))}</pre>
 <p><a href="events.jsonl">已确认执行记录</a> · <a href="commands_requested.jsonl">请求记录</a> · <a href="native_metadata.json">仿真与本体信息</a></p></html>'''
     (run/"index.html").write_text(page)

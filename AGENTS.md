@@ -58,3 +58,13 @@ The default loop must retain original `pi05_base`. `configs/collect_demo.toml`
 uses the separately identified RoboDojo-tuned pi05 only for VLA-only demo
 collection; it cannot enable recovery. Never call its successes base-model
 successes. Preserve checkpoint identity in promoted demonstration provenance.
+
+For VLA-only multi-task data collection, read `docs/COLLECTION.md`. The current
+campaign is `outputs/pi05_base_all_tasks_30_20260922`, targeting 30 valid native
+episodes for each of 54 tasks. Check its `status.json` before using either GPU.
+It runs independently of this conversation, with no GPT or RSI, and retains
+both native successes and failures. Do not change `rsi_loop` source while this
+campaign runs; its source hashes are pinned. Use its STOP file to request a
+clean stop after the current episode. Do not count runtime errors or partial
+episodes as failures or completed trials. Lossless camera videos, frame hashes,
+states, predicted chunks and acknowledged commands are the collection evidence.

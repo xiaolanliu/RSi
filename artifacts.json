@@ -482,9 +482,14 @@
       "sha256": "ac44318d67a0d2c1349f57ba64362d239242930522b323e04988f40d0914d3d3"
     },
     {
+      "path": "rsi_loop/collection.py",
+      "bytes": 18099,
+      "sha256": "2ed941702ae52490ef9ee17475b3391950a3c9f959cd48e540657a26fe7fb385"
+    },
+    {
       "path": "rsi_loop/context.py",
-      "bytes": 1360,
-      "sha256": "7d2810046cb8fc2ada01834b635002c07d97ca247dd94e10c2539ac4a9ca5ab2"
+      "bytes": 1485,
+      "sha256": "170b2e539a5e8acfa1f78b2ff69c3932dacafa124759bbe1f07f4cea85def2fa"
     },
     {
       "path": "rsi_loop/contracts.py",
@@ -517,19 +522,24 @@
       "sha256": "7856764ee8ca894075b65b3662b77fd922f3144942e1034de743f67acea37071"
     },
     {
+      "path": "rsi_loop/recording.py",
+      "bytes": 1753,
+      "sha256": "01f761c3b2960bb42b83bfe8f08516dfacded509ad99e3734ab7c799b0cdfc03"
+    },
+    {
       "path": "rsi_loop/recovery.py",
       "bytes": 12926,
       "sha256": "8a71bd159773e6d2ef7c6740fd6fe30bf23370d6517b7e4b3062c123af374fea"
     },
     {
       "path": "rsi_loop/simulator.py",
-      "bytes": 10389,
-      "sha256": "9b03940bffce8494ccd593d37b7257a09ee989c6d72539d39dcaaf8e96c1b5b3"
+      "bytes": 10993,
+      "sha256": "ee8e3e6c044e941b99bc8ef236ac2318f7e6d39c03827f8020de5888c70a14a8"
     },
     {
       "path": "rsi_loop/vla.py",
-      "bytes": 5986,
-      "sha256": "887fd94bc75907341c3a4465a4769b2ebb089f70d4c80943d77f930ca343d2cb"
+      "bytes": 6489,
+      "sha256": "53ab929cae51e972d3965ec3a1300373ca00293bf9c2c48c4faec0bb9a39639f"
     },
     {
       "path": "rsi_loop/workers.py",

@@ -67,11 +67,21 @@ class Session:
                              normalization_sha256=hashlib.sha256(normalization_file.read_bytes()).hexdigest(),
                              action_horizon=50, action_dim=14,
                              output="absolute_joint_targets_with_absolute_grippers",
-                             benchmark_finetuned=kind == "demo", role="default_control" if kind == "base" else "demonstration_collection")
+                             benchmark_finetuned=kind == "demo", inference_seed=seed,
+                             role="default_control" if kind == "base" else "demonstration_collection")
         (self.output / "vla_metadata.json").write_text(json.dumps(self.metadata, indent=2))
 
     def dispatch(self, op, args):
         if op == "metadata":
+            return self.metadata
+        if op == "begin_episode":
+            import jax
+            output = Path(args["output"])
+            output.mkdir(parents=True, exist_ok=False)
+            self.policy._rng = jax.random.key(int(args["seed"]))
+            self.output, self.calls = output, 0
+            self.metadata["inference_seed"] = int(args["seed"])
+            (output/"vla_metadata.json").write_text(json.dumps(self.metadata, indent=2))
             return self.metadata
         if op in ("close", "reset"):
             return None  # This Policy holds an RNG, never an action queue.

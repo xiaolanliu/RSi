@@ -22,8 +22,11 @@ def select_history(history, now):
 
 
 def read_observation(run, step):
+    from .recording import CAMERAS, read_rgb
     with np.load(Path(run)/"observations"/f"{step:06d}.npz", allow_pickle=False) as data:
+        images = {name: data[name] if name in data else read_rgb(run, name, step, data[f"{name}_sha256"])
+                  for name in CAMERAS}
         return Observation(str(data["episode_id"]), step, float(data["time"]), data["state"],
-            {k: data[k] for k in ("cam_high", "cam_left_wrist", "cam_right_wrist")}, str(data["instruction"]),
+            images, str(data["instruction"]),
             data["eef_positions"], data["eef_quaternions"],
             measured_gripper_openings=data["measured_gripper_openings"] if "measured_gripper_openings" in data else None)

@@ -24,15 +24,16 @@ class NoAutonomousPolicy:
 
 
 class Session:
-    def __init__(self, env, output, task):
+    def __init__(self, env, output, task, rgb_storage="npz"):
         self.env, self.output, self.task = env, Path(output), task
         self.output.mkdir(parents=True, exist_ok=True)
         self.episode_id = None
         self.tick, self.obs, self.writer = 0, None, None
+        self.rgb_storage, self.rgb_writer = rgb_storage, None
         self.env._stream_vision = lambda *a, **kw: None
         self.metadata = dict(control_dt=1/env.obs_manager.collect_freq,
                              max_steps=int(env.step_lim), task=task, action_semantics="absolute_joint_targets",
-                             gripper_semantics="normalized_opening_0_to_1")
+                             gripper_semantics="normalized_opening_0_to_1", rgb_storage=rgb_storage)
 
     def observe(self):
         raw = self.env.get_obs()
@@ -66,10 +67,11 @@ class Session:
         frame = np.concatenate([np.asarray(ImageOps.pad(Image.fromarray(image), (640, 480)))
                                 for image in images.values()], axis=1)
         self.writer.append_data(frame)
+        image_data = images if self.rgb_writer is None else self.rgb_writer.append(images)
         np.savez_compressed(self.output / "observations" / f"{self.tick:06d}.npz", state=state,
                             time=self.obs.time, episode_id=self.episode_id, instruction=self.obs.instruction,
                             measured_gripper_openings=openings,
-                            eef_positions=poses[:, :3], eef_quaternions=poses[:, 3:], **images)
+                            eef_positions=poses[:, :3], eef_quaternions=poses[:, 3:], **image_data)
         return self.obs
 
     def reset(self, seed):
@@ -90,6 +92,9 @@ class Session:
         import imageio.v2 as imageio
         self.writer = imageio.get_writer(str(self.output/"sensors.mp4"), fps=1/self.metadata["control_dt"],
             codec="libx264", pixelformat="yuv420p", macro_block_size=2, output_params=["-movflags", "+faststart"])
+        if self.rgb_storage == "lossless_video":
+            from .recording import LosslessRGB
+            self.rgb_writer = LosslessRGB(self.output/"rgb", 1/self.metadata["control_dt"])
         self.metadata["native_conditions"] = counts
         descriptions = {}
         for robot in self.env.robot_manager.robot_list:
@@ -121,6 +126,9 @@ class Session:
         return self.observe()
 
     def close(self):
+        if self.rgb_writer is not None:
+            self.rgb_writer.close()
+            self.rgb_writer = None
         if self.writer is not None:
             self.writer.close()
             self.writer = None
@@ -149,6 +157,7 @@ def main():
     p.add_argument("--output", required=True)
     p.add_argument("--task", default="build_tower")
     p.add_argument("--eval-seed", type=int, default=0)
+    p.add_argument("--rgb-storage", choices=("npz", "lossless_video"), default="npz")
     AppLauncher.add_app_launcher_args(p)
     args = p.parse_args()
     args.headless = args.enable_cameras = True
@@ -185,7 +194,7 @@ def main():
         env = eval_env.create_eval_env(cfg, app)
         Path(args.output).mkdir(parents=True, exist_ok=True)
         (Path(args.output)/"resolved_simulator.json").write_text(json.dumps(OmegaConf.to_container(cfg, resolve=True), indent=2))
-        session = Session(env, args.output, args.task)
+        session = Session(env, args.output, args.task, args.rgb_storage)
         serve(args.socket, session.dispatch)
     finally:
         if session:
