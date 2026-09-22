@@ -27,9 +27,21 @@ jobs:
           rsi-replay --input examples/episodes/pant_fail_ep000000.npz --expected examples/expected/pant_fail_ep000000.npz --output outputs/pant_fail_ep0
       - name: Check control contracts without API or simulator
         run: |
-          python -m pip install pytest jsonschema imageio==2.37.0 imageio-ffmpeg==0.6.0
-          python -m pytest -q tests/test_control_loop.py tests/test_checkpoint_download.py tests/test_provider.py tests/test_collection.py
+          python -m pip install pytest jsonschema
+          python -m pytest -q tests/test_control_loop.py tests/test_checkpoint_download.py tests/test_provider.py
       - uses: actions/upload-artifact@v4
         with:
           name: replay-and-verification
           path: outputs/
+  collection-contracts:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify collection contracts in the integration Python version
+        run: |
+          python -m pip install pytest numpy==1.26.4 av==13.1.0 Pillow==12.3.0 imageio==2.37.0 imageio-ffmpeg==0.6.0
+          python -m pytest -q tests/test_collection.py
