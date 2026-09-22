@@ -146,6 +146,34 @@ def test_invalid_motion_rejected_before_ik(tmp_path):
         recovery.plan(observation(0), {"alarm": True}, [])
 
 
+def test_context_history_is_strictly_past_and_keeps_physical_gripper(tmp_path):
+    from rsi_loop.context import history_entry
+    current = observation(100)
+    history = [history_entry(replace(observation(step), measured_gripper_openings=np.array([.2, .3])),
+                             "vla", False) for step in (24, 25, 50, 75, 100, 101)]
+    payload = ContextRecovery(None, None, output=tmp_path).request(current, {}, history)
+    text = next(p["text"] for p in payload["input"][0]["content"]
+                if p["type"] == "input_text" and p["text"].startswith("Current robot context: "))
+    context = json.loads(text.removeprefix("Current robot context: "))
+    assert [h["step"] for h in context["history"]] == [25, 50, 75]
+    assert context["history"][0]["measured_gripper_openings"] == [.2, .3]
+
+
+def test_request_snapshot_survives_transport_failure(tmp_path):
+    class Timeout:
+        def send(self, payload):
+            self.payload = payload
+            raise TimeoutError("local transport test")
+    transport = Timeout()
+    recovery = ContextRecovery(transport, None, system_prompt="exact test prompt", output=tmp_path)
+    with pytest.raises(TimeoutError):
+        recovery.plan(observation(17), {"alarm": True}, [])
+    saved = json.loads((tmp_path/"request_000017.json").read_text())
+    assert saved == transport.payload
+    assert saved["instructions"] == "exact test prompt"
+    assert "Authorization" not in saved
+
+
 def test_sim_clock_never_uses_future_state():
     from rsi_loop.monitor import CausalMonitor
     class Head:
@@ -175,6 +203,29 @@ def test_demo_promotion_rejects_failure(tmp_path):
     (tmp_path/"native_outcome.json").write_text(json.dumps(dict(valid_for_success_rate=True, native_success=False)))
     with pytest.raises(ValueError, match="success"):
         promote_success(tmp_path, tmp_path/"demo")
+
+
+def test_missing_checkpoint_fails_before_loading_jax(monkeypatch, tmp_path):
+    from rsi_loop import vla
+    def forbidden(*args, **kwargs):
+        raise AssertionError("Model load reached for an unidentified checkpoint")
+    monkeypatch.setattr(vla, "load_policy", forbidden)
+    with pytest.raises(ValueError, match="Incomplete or wrong base checkpoint"):
+        vla.Session(tmp_path, "arx_x5_sim", tmp_path/"output", 0)
+
+
+def test_success_promotion_preserves_demonstrator_identity(tmp_path):
+    from rsi_loop.demonstration import promote_success
+    # A unit fixture for provenance serialization, not an evaluated trajectory.
+    (tmp_path/"loop_summary.json").write_text(json.dumps(dict(complete=True, native_success=True, interventions=0)))
+    (tmp_path/"native_outcome.json").write_text(json.dumps(dict(valid_for_success_rate=True, native_success=True)))
+    (tmp_path/"sensors.mp4").write_bytes(b"unit-test video placeholder")
+    (tmp_path/"vla").mkdir()
+    model = dict(checkpoint_kind="demo", benchmark_finetuned=True, role="demonstration_collection")
+    (tmp_path/"vla/vla_metadata.json").write_text(json.dumps(model))
+    video = promote_success(tmp_path, tmp_path/"promoted")
+    assert video.exists()
+    assert json.loads((video.parent/"provenance.json").read_text())["model"] == model
 
 
 def test_monitor_uses_measured_gripper_not_previous_command():

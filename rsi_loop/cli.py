@@ -29,16 +29,19 @@ def doctor(args):
     if args.hashes:
         import hashlib
         root = Path(__file__).resolve().parents[1]
-        identity = json.loads((root/"configs/pi05_base_identity.json").read_text())
-        checked = []
-        for row in identity["files"]:
-            path = Path(paths["pi05_base"])/row["path"]
-            with path.open("rb") as stream:
-                digest = hashlib.file_digest(stream, "sha256").hexdigest()
-            if digest != row["sha256"]:
-                raise ValueError(f"Original pi05_base parameter identity mismatch: {path}")
-            checked.append(row["path"])
-        result["verified_original_parameter_files"] = checked
+        for kind, field in (("base", "verified_original_parameter_files"), ("demo", "verified_demo_parameter_files")):
+            if kind == "demo" and not paths.get("pi05_demo"):
+                continue
+            identity = json.loads((root/"configs"/f"pi05_{kind}_identity.json").read_text())
+            checked = []
+            for row in identity["files"]:
+                path = Path(paths[f"pi05_{kind}"])/row["path"]
+                with path.open("rb") as stream:
+                    digest = hashlib.file_digest(stream, "sha256").hexdigest()
+                if path.stat().st_size != row["size"] or digest != row["sha256"]:
+                    raise ValueError(f"pi05 {kind} parameter identity mismatch: {path}")
+                checked.append(row["path"])
+            result[field] = checked
     print(json.dumps(result, indent=2))
     return 0 if all(packages.values()) and all(x["exists"] for x in result["resources"].values()) else 1
 
@@ -87,6 +90,11 @@ def evaluate(args):
         cfg = replace(cfg, recovery_mode=args.mode)
     if args.max_steps:
         cfg = replace(cfg, max_steps=args.max_steps)
+    kind = config.get("vla_checkpoint_kind", "base")
+    if kind not in ("base", "demo"):
+        raise ValueError("Unknown pi05 checkpoint identity")
+    if kind == "demo" and cfg.recovery_mode != "disabled":
+        raise ValueError("The benchmark-tuned checkpoint is reserved for VLA-only demonstration collection")
     if cfg.recovery_mode == "live" and not (args.allow_live_gpt and config["gpt"]["enabled"]):
         raise ValueError("Live mode requires both gpt.enabled=true and --allow-live-gpt")
     if cfg.recovery_mode == "live":
@@ -104,8 +112,9 @@ def evaluate(args):
     vla_env = dict(common, CUDA_VISIBLE_DEVICES=str(config["vla_gpu"]), XLA_PYTHON_CLIENT_PREALLOCATE="false",
                    OPENPI_DATA_HOME=paths["openpi_cache"])
     vla_env["PYTHONPATH"] = os.pathsep.join([project, paths["openpi"]+"/src", paths["openpi"]+"/packages/openpi-client/src"])
-    vla_args = ["--checkpoint", paths["pi05_base"], "--norm-asset", config["norm_asset"], "--output", str(output/"vla")]
-    if paths.get("sim_normalization"):
+    checkpoint = paths["pi05_base"] if kind == "base" else paths["pi05_demo"]
+    vla_args = ["--checkpoint", checkpoint, "--kind", kind, "--norm-asset", config["norm_asset"], "--output", str(output/"vla")]
+    if kind == "base" and paths.get("sim_normalization"):
         vla_args += ["--norm-stats", paths["sim_normalization"]]
     vla = Worker("rsi_loop.vla", vla_args, output=output/"vla.log", env=vla_env)
     sim = None
@@ -146,7 +155,7 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
     p = sub.add_parser("doctor")
     p.add_argument("--resources", default="resources.local.json")
-    p.add_argument("--hashes", action="store_true", help="Verify all original pi05_base parameters against published identities")
+    p.add_argument("--hashes", action="store_true", help="Verify original pi05_base and any configured demo checkpoint against pinned identities")
     p = sub.add_parser("evaluate")
     p.add_argument("--resources", default="resources.local.json")
     p.add_argument("--config", default="configs/loop.toml")
@@ -176,34 +185,37 @@ def main():
 
 
 def prepare_context(args):
-    import numpy as np
-    from .contracts import Observation
-    from .recovery import ContextRecovery
+    from .context import history_entry, select_history, read_observation
+    from .recovery import ContextRecovery, SYSTEM_PROMPT
     run = Path(args.run)
+    snapshots = sorted((run/"recovery").glob("request_*.json"))
+    saved = run/"recovery"/f"request_{args.step:06d}.json" if args.step is not None else (snapshots[-1] if snapshots else None)
+    destination = Path(args.output)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if not args.demo and saved is not None and saved.is_file():
+        destination.write_bytes(saved.read_bytes())
+        print(json.dumps(dict(request=args.output, source_snapshot=str(saved), api_calls=0)))
+        return
     events = [json.loads(line) for line in (run/"events.jsonl").read_text().splitlines()]
+    if not events:
+        raise ValueError("This run has no executed observations or recorded recovery request")
     if args.step is None:
         args.step = events[-1]["step"]
     event = next(e for e in events if e["step"] == args.step)
-    with np.load(run/"observations"/f"{args.step:06d}.npz", allow_pickle=False) as data:
-        obs = Observation(str(data["episode_id"]), args.step, float(data["time"]), data["state"],
-            {k: data[k] for k in ("cam_high", "cam_left_wrist", "cam_right_wrist")}, str(data["instruction"]),
-            data["eef_positions"], data["eef_quaternions"],
-            measured_gripper_openings=data["measured_gripper_openings"] if "measured_gripper_openings" in data else None)
+    obs = read_observation(run, args.step)
+    run_config = run/"run_config.json"
+    gpt = json.loads(run_config.read_text())["config"].get("gpt", {}) if run_config.exists() else {}
     demo = None
-    if args.demo:
+    video = args.demo or gpt.get("demo_mp4")
+    if video:
         paths = resources(args.resources)
         sys.path.insert(0, paths["gpt_policy"]+"/src")
         from .demonstration import Demonstration
-        demo = Demonstration(args.demo, task=obs.instruction, cache=Path(args.output).parent/"demo_cache")
-    past = [e for e in events if e["step"] < args.step and e["time"] >= obs.time-3]
-    selected = np.linspace(0, len(past)-1, min(3, len(past)), dtype=int) if past else []
-    history = []
-    for index in selected:
-        e = past[index]
-        with np.load(run/"observations"/f'{e["step"]:06d}.npz', allow_pickle=False) as data:
-            history.append(dict(**{k: e[k] for k in ("step", "time", "source", "alarm")},
-                                state=data["state"].tolist(), image_top=data["cam_high"]))
-    recovery = ContextRecovery(None, None, demo=demo, output=Path(args.output).parent)
+        demo = Demonstration(video, task=obs.instruction, cache=destination.parent/"demo_cache")
+    history = [history_entry(read_observation(run, e["step"]), e["source"], e["alarm"])
+               for e in select_history(events, obs.time)]
+    prompt = Path(gpt["system_prompt_file"]).read_text() if gpt.get("system_prompt_file") else SYSTEM_PROMPT
+    recovery = ContextRecovery(None, None, demo=demo, system_prompt=prompt, output=destination.parent)
     payload = recovery.request(obs, event["risk"], history)
     Path(args.output).write_text(json.dumps(payload, indent=2))
     print(json.dumps(dict(request=args.output, step=args.step, api_calls=0, demo_present=demo is not None)))

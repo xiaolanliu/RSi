@@ -9,6 +9,7 @@ import urllib.request
 import numpy as np
 
 from .contracts import RecoveryPlan
+from .context import select_history
 
 
 SYSTEM_PROMPT = """You temporarily control a dual-arm robot after its monitor detected an
@@ -90,8 +91,7 @@ class ContextRecovery:
             content.extend(self.demo.content())
         else:
             content.append(dict(type="input_text", text="No success demonstration was supplied."))
-        indices = np.linspace(0, len(history)-1, min(3, len(history)), dtype=int) if history else []
-        selected = [history[index] for index in indices]
+        selected = select_history(history, obs.time)
         context = dict(episode_id=obs.episode_id, step=obs.step, time=obs.time,
                        state_left7_right7=obs.state.tolist(),
                        state_gripper_semantics="native_previous_command_opening",
@@ -114,6 +114,9 @@ class ContextRecovery:
     def plan(self, obs, risk, history):
         from jsonschema import validate
         payload = self.request(obs, risk, history)
+        # Save the exact credential-free input even if the request times out or
+        # its response is rejected. Offline inspection can replay this snapshot.
+        (self.output/f"request_{obs.step:06d}.json").write_text(json.dumps(payload, indent=2, allow_nan=False))
         result, usage = self.transport.send(payload)
         validate(result, RECOVERY_SCHEMA)
         if result["status"] != "recover":

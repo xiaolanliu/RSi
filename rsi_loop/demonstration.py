@@ -22,7 +22,10 @@ class Demonstration:
         pts = extractor.frame_times(self.video)
         times = np.linspace(pts[0], pts[-1], min(max_frames, len(pts)))
         self.frames = extractor.extract_at(self.video, times, self.cache, 640, pts)
-        self.provenance = provenance or {"success_source": "user_provided_success_demonstration"}
+        sidecar = self.video.parent/"provenance.json"
+        recorded = json.loads(sidecar.read_text()) if provenance is None and sidecar.is_file() else None
+        self.provenance = provenance if provenance is not None else (
+            recorded or {"success_source": "user_provided_success_demonstration"})
         (self.cache / "manifest.json").write_text(json.dumps(dict(
             video=str(self.video), sha256=self.sha256, task=task, metadata=metadata.record(),
             frames=[frame.record(self.cache) for frame in self.frames], provenance=self.provenance,
@@ -51,8 +54,9 @@ def promote_success(run, destination):
     source = run / "sensors.mp4"
     if not source.is_file() or source.stat().st_size == 0:
         raise ValueError("Success has no recorded video")
+    model = json.loads((run/"vla/vla_metadata.json").read_text())
     destination.mkdir(parents=True, exist_ok=False)
     shutil.copyfile(source, destination / "success.mp4")
     (destination / "provenance.json").write_text(json.dumps(dict(
-        source_run=str(run.resolve()), source="pi05_native_success", loop=loop, native=native), indent=2))
+        source_run=str(run.resolve()), source="pi05_native_success", model=model, loop=loop, native=native), indent=2))
     return destination / "success.mp4"

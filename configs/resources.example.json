@@ -6,5 +6,6 @@
   "sim_normalization": "external/normalization/arx_x5_sim",
   "wan_vae": "/absolute/path/to/Wan2.2_VAE.pth",
   "nvidia_extensions": "/optional/path/to/offline/kit/extensions",
-  "openpi_cache": "/absolute/path/to/openpi/cache"
+  "openpi_cache": "/absolute/path/to/openpi/cache",
+  "pi05_demo": ""
 }

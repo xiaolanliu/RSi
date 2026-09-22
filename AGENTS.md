@@ -51,3 +51,7 @@ Preserve native RoboDojo physics/control rate and success checks. A 25→30 Hz
 causal clock adapter does not establish simulation OOD calibration. Mock holds
 test ownership transfer, not recovery skill. Only complete native VLA-only
 successes can be promoted automatically to demonstration videos.
+The default loop must retain original `pi05_base`. `configs/collect_demo.toml`
+uses the separately identified RoboDojo-tuned pi05 only for VLA-only demo
+collection; it cannot enable recovery. Never call its successes base-model
+successes. Preserve checkpoint identity in promoted demonstration provenance.

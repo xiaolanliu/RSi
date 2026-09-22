@@ -17,6 +17,21 @@
       "sha256": "ada56140c49fca0eec050a21a47f662a6d091f2500cbf75521566293095e555c"
     },
     {
+      "path": "examples/demonstrations/README.md",
+      "bytes": 975,
+      "sha256": "10ce7e525501786b6b2cad78fa1e6649587cedfa14ff7ff07be390e8f0c738bb"
+    },
+    {
+      "path": "examples/demonstrations/sim_fold_clothes_01/provenance.json",
+      "bytes": 2398,
+      "sha256": "d81b8cee882541616927699cd8dd4a01c49f5dc09a707b1d296d9494443773a1"
+    },
+    {
+      "path": "examples/demonstrations/sim_fold_clothes_01/success.mp4",
+      "bytes": 3096628,
+      "sha256": "c08a3604ec3c88dd7e2ea920f0f56eed438bd1a37db33bb718c918119086f89e"
+    },
+    {
       "path": "examples/episodes/data_open_long_sleeve_0806_lerobot_dc230203_ep000043.npz",
       "bytes": 246637,
       "sha256": "2d96732c10c0053a87dfa427ef1d0ffad814a812245535d99a1234ea29e18391"
@@ -112,9 +127,19 @@
       "sha256": "ef4f5ce36d03b61f4d83c6f0f14f4ffff5bd69687b6a68613f1c4fb8230920f2"
     },
     {
+      "path": "configs/collect_demo.toml",
+      "bytes": 921,
+      "sha256": "b430ea12292b28fe510deada1aea59e3b2fc365816234ba9538630c479d157d4"
+    },
+    {
       "path": "configs/dataset_paths.example.json",
       "bytes": 9055,
       "sha256": "23c91b88ebc835b95936217689fbab082c67a21fd51db7818fe4c4f4a975e369"
+    },
+    {
+      "path": "configs/fold_clothes_context.toml",
+      "bytes": 933,
+      "sha256": "e98beb555ee95a6a70236774f4929955ecfe28e6052c6f59d6ce9729ec6ce0b5"
     },
     {
       "path": "configs/loop.toml",
@@ -142,9 +167,14 @@
       "sha256": "5c3c2076bb3825b247d217d7c302a3eb78d9e43035410c890d18a824e732144d"
     },
     {
+      "path": "configs/pi05_demo_identity.json",
+      "bytes": 4434,
+      "sha256": "2b1505e7b225e05fca28aebcb61d54b917ef2e09a2ed57f75eeb9080f42ab452"
+    },
+    {
       "path": "configs/resources.example.json",
-      "bytes": 382,
-      "sha256": "1f6ef44a7b598594f069908cddd5aa00145c325f219e8ea0f16d951485be8807"
+      "bytes": 401,
+      "sha256": "9af500de5f2f838f2daddedf4d181a30b9fa485463a652f4287919b7e5279913"
     },
     {
       "path": "configs/sim_normalization.json",
@@ -433,8 +463,13 @@
     },
     {
       "path": "rsi_loop/cli.py",
-      "bytes": 10752,
-      "sha256": "8dc211ba1e6b654793bdb0f5be24ba4438f1099ed43bcd4aa4d67937ad356b77"
+      "bytes": 11589,
+      "sha256": "6e11537a72e96ab43c8783cfea20d3396c1ac5233774b543702d278590d5a131"
+    },
+    {
+      "path": "rsi_loop/context.py",
+      "bytes": 1360,
+      "sha256": "7d2810046cb8fc2ada01834b635002c07d97ca247dd94e10c2539ac4a9ca5ab2"
     },
     {
       "path": "rsi_loop/contracts.py",
@@ -443,13 +478,13 @@
     },
     {
       "path": "rsi_loop/controller.py",
-      "bytes": 6986,
-      "sha256": "1be6542db81871bdca093a0b7b3b7b907c50d7a174efc0457c1a04ed1ae8d209"
+      "bytes": 6650,
+      "sha256": "79ce0d1c04586b7ae0c461a4acadf450ce6b99ea75511047c1f5c0d5c668a97e"
     },
     {
       "path": "rsi_loop/demonstration.py",
-      "bytes": 3159,
-      "sha256": "5d9ef9e455a4696c9d33d66231bacde6ae69c36f53dd11aaa8b05d04e82422c2"
+      "bytes": 3452,
+      "sha256": "bb5cab203ca1c0c34d3e7ba68d3b236f0f62df9fc38e0ac4ab1b1bda6bfb8200"
     },
     {
       "path": "rsi_loop/kinematics.py",
@@ -463,8 +498,8 @@
     },
     {
       "path": "rsi_loop/recovery.py",
-      "bytes": 7768,
-      "sha256": "1f233c17a4307b146fa93e4709b7ece4e9a3db5094fc212c338ea57542966589"
+      "bytes": 7972,
+      "sha256": "a5087fe79a3a2d723ea61fce07a2994b9b01f57ccb6418b3422159fc0cb7a63a"
     },
     {
       "path": "rsi_loop/simulator.py",
@@ -473,8 +508,8 @@
     },
     {
       "path": "rsi_loop/vla.py",
-      "bytes": 4806,
-      "sha256": "1ac9e675e0017d8d0c2be37aa9ef34785fbaf9f73521bae7f2976304340430e7"
+      "bytes": 5986,
+      "sha256": "887fd94bc75907341c3a4465a4769b2ebb089f70d4c80943d77f930ca343d2cb"
     },
     {
       "path": "rsi_loop/workers.py",

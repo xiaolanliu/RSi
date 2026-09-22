@@ -2,6 +2,8 @@
 
 当前开发入口是 [仿真闭环操作说明](docs/AGENT_LOOP.md)：统一 `rsi` conda 环境，RoboDojo 原生仿真，官方 pi05_base，V11 RSI，以及参考 GPT-Policy 的示范视频上下文。默认只测试本地 mock 恢复，GPT 网络调用关闭。
 
+已附 [pi05 自行采集的仿真参考示范](examples/demonstrations/README.md) 和 `configs/fold_clothes_context.toml`。示范来自单独标识的 RoboDojo 微调模型；主闭环默认权重保持原始 base。
+
 代码按用途分开：`rsi_loop/` 负责控制与仿真适配，`agent_closed_loop/` 保留监测器和必要训练模块，`compile/` 保留离线教师，`rsi_tools/` 负责冻结模型复现，`external/` 是忽略 Git 的固定版本第三方代码和资源。旧报告生成器与旧版本实验入口已删除，可在 Git 历史 `51b1da3` 中查阅。
 
 下文是原始 V11 权重的独立复现说明；仍可不安装仿真器，单独验证监测器。

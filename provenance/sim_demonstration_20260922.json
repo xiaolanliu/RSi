@@ -1,0 +1,66 @@
+{
+  "date": "2026-09-22",
+  "external_gpt_api_calls": 0,
+  "task": "fold_clothes",
+  "layout_group": 0,
+  "layout_id": 0,
+  "model": {
+    "checkpoint": "/data/users/liuweiyuan/Code/RSi/external/checkpoints/robodojo_pi05_sim_59999",
+    "source": "https://modelscope.cn/datasets/RoboDojo-Benchmark/RoboDojo/tree/master/ckpt/RoboDojo/Pi_05/RoboDojo-sim-arx_x5-joint-0/59999",
+    "checkpoint_kind": "demo",
+    "identity_manifest_sha256": "2b1505e7b225e05fca28aebcb61d54b917ef2e09a2ed57f75eeb9080f42ab452",
+    "normalization_asset": "arx_x5_sim",
+    "normalization_path": null,
+    "normalization_sha256": "ad7dea3e3d2bcdb348945fe03422ab1adccd03baf67318b1a1d153dfe8694db5",
+    "action_horizon": 50,
+    "action_dim": 14,
+    "output": "absolute_joint_targets_with_absolute_grippers",
+    "benchmark_finetuned": true,
+    "role": "demonstration_collection"
+  },
+  "loop": {
+    "reason": "native_terminal",
+    "steps": 286,
+    "vla_calls": 29,
+    "interventions": 0,
+    "executed_steps": {
+      "vla": 286,
+      "mock": 0,
+      "gpt": 0
+    },
+    "recovery_mode": "disabled",
+    "complete": true,
+    "native_success": true,
+    "elapsed_seconds": 175.8005518913269
+  },
+  "native": {
+    "complete": true,
+    "valid_for_success_rate": true,
+    "native_success": true,
+    "native_control_steps": 286,
+    "native_step_limit": 500,
+    "status": "native_completed",
+    "task": "fold_clothes"
+  },
+  "simulated_seconds": 11.44,
+  "natural_alarm_steps": 0,
+  "maximum_risk_percentile": 0.6086956521739131,
+  "demonstration": {
+    "sha256": "c08a3604ec3c88dd7e2ea920f0f56eed438bd1a37db33bb718c918119086f89e",
+    "bytes": 3096628,
+    "source": "benchmark_finetuned_pi05_native_success",
+    "quality": "Native task success; final cloth remains wrinkled. This is a bootstrap reference, not the original human demonstration."
+  },
+  "context_verification": {
+    "passed": true,
+    "images": 14,
+    "demo_frames": 8,
+    "native_success": true,
+    "checkpoint_kind": "demo",
+    "api_calls": 0
+  },
+  "default_controller_checkpoint_unchanged": "gs://openpi-assets/checkpoints/pi05_base",
+  "original_files_verified": 20,
+  "demonstration_checkpoint_files_verified": 17,
+  "not_a_success_rate_benchmark": true
+}

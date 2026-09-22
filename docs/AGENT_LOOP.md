@@ -18,6 +18,7 @@ rsi_loop/
   demonstration.py   GPT-Policy 抽帧、示范缓存、成功轨迹筛选
   kinematics.py      机器人本体 FK、IK 与动作速度界限
   contracts.py       state/action/observation/恢复计划的显式接口
+  context.py         在线/离线共用的因果历史采样与观测读取
   workers.py         同一个 Python 环境下的进程隔离与应答检查
 configs/loop.toml               闭环参数；默认禁止 GPT 调用
 configs/sources.lock.json       第三方源码的固定提交
@@ -45,7 +46,7 @@ cp configs/resources.example.json resources.local.json
 # 编辑 resources.local.json，填写真实资源位置。
 bash tools/install_rsi.sh
 rsi-loop doctor
-rsi-loop doctor --hashes  # 一次性读取全部 pi05 参数，核对原始权重身份。
+rsi-loop doctor --hashes  # 核对原始 pi05 参数，以及已配置的可选采集权重。
 ```
 
 `tools/install_rsi.sh` 默认安装到 `$HOME/.conda/envs/rsi`；若上面的 conda
@@ -98,6 +99,11 @@ rsi-loop prepare-context --run outputs/integration_01 --step 50 \
 
 # 独立测试真实仿真交接：在第 32 步注入一次测试报警，原始分数仍保存。
 python tools/check_sim_handoff.py --output outputs/native_handoff_test
+
+# 完整本地协议测试：视频抽帧 → HTTP 替身 → 结构化回复 → IK → 原生执行。
+# 该视频只作为协议测试材料，不声明其任务成功。
+python tools/check_sim_handoff.py --output outputs/structured_recovery_test \
+  --video-fixture outputs/native_handoff_test/sensors.mp4
 
 # 为已录制回合生成本地网页：三路视频、三项分数、关节与真实夹爪曲线。
 python tools/report_sim_run.py --run outputs/vla_candidate_01
@@ -189,12 +195,43 @@ state、末端位姿、任务指令和 OOD 三项证据。视频中的示范是�
 请求使用 [Responses 图像输入](https://developers.openai.com/api/docs/guides/images-vision)
 与 [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs)，
 `store=false`，只读专用 key，关闭自动重试。当前阶段没有进行真实 GPT 调用。
+每次请求之前保存不含凭据的 `recovery/request_<step>.json`，失败/超时也保留。
+`prepare-context` 优先原样导出该快照；没有快照时，用同一历史采样与缩图
+函数重建上下文，并读取运行配置中的示范路径与 SYSTEM_PROMPT。
+历史严格限制在当前时刻之前三秒，并记录实测夹爪开度。
+
+## 独立采集仿真成功示范
+
+默认 `configs/loop.toml` 继续使用指定的原始 `pi05_base`。由于原始 base 在
+当前搭塔/折衣回合均未成功，另外提供 `configs/collect_demo.toml`，仅用于
+以 RoboDojo 官方 59,999 步微调 pi05 自行 rollout 收集示范。它不会替换
+主闭环权重，也不能启用恢复接管。两种 checkpoint 的身份与用途都写入
+`vla_metadata.json`；自动晋升的示范会保存模型来源。
+对应的官方配置为
+[`pi05_base_aloha_full_sim_arx-x5_seed_0`](https://github.com/XPolicyLab/XPolicyLab/blob/a768326d05f68d421542636e6467bea7ef6bbe42/policy/Pi_05/openpi/src/openpi/training/config.py)：
+从原始 base 初始化、训练 60,000 步；部署读取编号 59,999 的 checkpoint。
+
+```bash
+python tools/fetch_checkpoint.py --kind demo \
+  --output external/checkpoints/robodojo_pi05_sim_59999 --workers 4 --segments 4
+# resources.local.json 增加：
+# "pi05_demo": "external/checkpoints/robodojo_pi05_sim_59999"
+rsi-loop evaluate --config configs/collect_demo.toml --output outputs/demo_candidate_01
+rsi-loop promote-demo --run outputs/demo_candidate_01 --output outputs/demos/fold_clothes_01
+```
+
+下载清单在 `configs/pi05_demo_identity.json`，约 12.44 GB，只取推理参数与
+归一化，不取训练优化器。每个文件核对公开仓库给出的 SHA256，支持 `.part`
+断点续传；`--segments 4` 并发读取精确字节范围，完整文件仍必须通过 SHA256。
+禁止覆盖身份不符的现有 checkpoint。主模型也可使用
+`fetch_checkpoint.py --kind base --output /your/pi05_base` 下载其已固定的参数；
+完整仿真仍使用 `setup_sources.py` 下载的 `arx_x5_sim` 归一化。
 
 ## 验证与后续修改
 
 ```bash
 python tools/run_unit_tests.py
-python -m pytest -q tests/test_control_loop.py
+python -m pytest -q tests/test_control_loop.py tests/test_checkpoint_download.py
 rsi-verify --device cpu --output outputs/verification_conda_cpu.json
 rsi-verify --device cuda:0 --output outputs/verification_conda_cuda.json
 ```
@@ -207,15 +244,22 @@ HTTP 传输测试仅向本机测试服务器发送请求，无外部 GPT 调用�
 
 ## 本机验证记录（2026-09-22）
 
-Python 3.11.14 的 `rsi` 环境通过依赖检查。36 项模型机制测试、15 项闭环
+Python 3.11.14 的 `rsi` 环境通过依赖检查。36 项模型机制测试、19 项闭环
 测试通过；全部 13,548 帧在 CPU 与 CUDA 上分别通过独立历史结果校验，
 没有修改权重、golden、报警阈值或比较容差。
+另外两项本地 HTTP 下载测试验证中断后字节续传，以及拒绝错误 Content-Range。
 
 原始 pi05 的 20 个参数文件通过官方对象校验；真实三相机、pi05/Wan/RSI、
 原生逐步执行、动作 chunk、物理夹爪记录和 MP4 已贯通。GPT-Policy 抽帧器
 从实际录制视频读取了八个真实 PTS 帧；该接口测试视频不是成功示范。
-本体 FK 在初始与运动后的姿态均与原生末端观测对齐；1 mm/25 步的 IK
-接口测试通过，但它不是经 GPT 决策或实际执行的恢复效果评估。
+本体 FK 在初始与运动后的姿态均与原生末端观测对齐；独立的
+`outputs/structured_recovery_test` 还完成了视频抽帧、14 张上下文图像、
+本地 HTTP 结构化回复、IK、两臂 1 mm 上移的十步原生执行。第 32 步触发
+测试报警，第 42 步交回 VLA 并重新推理。保存的请求快照与 HTTP 实际
+收到的内容一致。该回复来自本地固定替身，只验证协议与执行，不代表 GPT
+恢复能力；所用视频明确标记为测试视频，不能进入成功示范库。
+两臂实际末端竖直位移均约 0.987 mm，完整记录见
+[context_handoff_20260922.json](../provenance/context_handoff_20260922.json)。
 
 `outputs/vla_candidate_02` 为原始 base 的首个完整搭塔回合：1,050 个控制步、
 105 次 VLA 推理、原生任务失败、自然报警 0 次；风险分位数最高约 0.145。
@@ -235,4 +279,30 @@ Python 3.11.14 的 `rsi` 环境通过依赖检查。36 项模型机制测试、1
 `fold_clothes`，其余仍为布局组 0、布局 0。
 
 可移植的完整验证摘要见 [integration_20260922.json](../provenance/integration_20260922.json)。
-这两个单布局实验不是总体成功率评测；目前收集到的合格成功示范数量为零。
+这两个原始 base 单布局实验不是总体成功率评测，也没有生成合格成功示范。
+
+独立采集模型在 `outputs/tuned_demo_candidate_01` 完成折衣任务：布局组 0、
+布局 0，286 个原生控制步（11.44 秒），29 次 pi05 推理，原生成功；
+全部动作来自 VLA，恢复接管和外部 GPT 调用均为零。视频已晋升至
+`outputs/demos/fold_clothes_01/success.mp4`，同目录保留模型来源与成功结果。
+这条视频是仿真判据下的成功参考，最终衣物仍有明显褶皱，不等同于用户的
+早期人工成功示教，也不是原始 base 的成功记录。
+
+已用该视频加原始 base 的折衣失败现场验证上下文：8 张成功示范帧、
+3 张因果历史帧、当前三视角，共 14 张图像，未发送到 GPT。
+记录见 [sim_demonstration_20260922.json](../provenance/sim_demonstration_20260922.json)。
+
+```bash
+python tools/report_sim_run.py --run outputs/tuned_demo_candidate_01
+rsi-loop prepare-context --run outputs/fold_candidate_01 --step 175 \
+  --demo outputs/demos/fold_clothes_01/success.mp4 \
+  --output outputs/context/fold_failure_with_success_demo.json
+```
+
+上述两个运行目录是本机实测输出；新机器先执行对应 rollout 再使用其路径。
+第 175 步只用于检查请求格式，未被当成故障起点标签或报警校准依据。
+
+仓库附有这条约 3.1 MB 的 [示范视频及来源](../examples/demonstrations/README.md)，
+克隆后可以直接用于参考输入。`configs/fold_clothes_context.toml` 已引用它，
+任务设为折衣、控制模型为原始 base，GPT 仍默认关闭。用户提供早期人工
+成功示教后，只需替换 `gpt.demo_mp4` 与可选 `system_prompt_file`。

@@ -5,9 +5,8 @@ import json
 from pathlib import Path
 import time
 
-import numpy as np
-
 from .contracts import action_array
+from .context import history_entry
 
 
 @dataclass(frozen=True)
@@ -98,12 +97,7 @@ class Controller:
                     event.update(source=source, command=command.tolist())
                     intents.write(json.dumps(event, allow_nan=False) + "\n")
                     intents.flush()
-                    from PIL import Image
-                    recent_frame = Image.fromarray(obs.images["cam_high"])
-                    recent_frame.thumbnail((320, 240))
-                    recent_image = np.asarray(recent_frame)
-                    history.append(dict(step=obs.step, time=obs.time, source=source,
-                                        state=obs.state.tolist(), alarm=alarm, image_top=recent_image))
+                    history.append(history_entry(obs, source, alarm))
                     while history and history[0]["time"] < obs.time-3:
                         history.popleft()
                     previous_identity = obs.identity

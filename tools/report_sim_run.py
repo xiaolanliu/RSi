@@ -55,7 +55,7 @@ def report(run):
     fig.savefig(run/"robot_state.png", dpi=140)
     plt.close(fig)
     records = {}
-    for name in ("loop_summary.json", "native_outcome.json", "control_test.json"):
+    for name in ("loop_summary.json", "native_outcome.json", "vla/vla_metadata.json", "control_test.json"):
         if (run/name).exists():
             records[name] = json.loads((run/name).read_text())
     warning = "此运行注入了测试报警，只验证控制交接。" if "control_test.json" in records else "本页展示模型的实际报警与原生任务结果。"

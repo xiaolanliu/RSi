@@ -1,0 +1,59 @@
+{
+  "date": "2026-09-22",
+  "external_gpt_api_calls": 0,
+  "control_contract_tests": 19,
+  "checkpoint_download_tests": 2,
+  "structured_handoff": {
+    "test_only": true,
+    "api_calls": 0,
+    "injected_step": 32,
+    "purpose": "native command handoff, not detection accuracy or recovery skill",
+    "structured_loopback_requests": 1,
+    "context_images": 14,
+    "video_fixture_is_success_demo": false,
+    "motion": "both arms 1 mm upward over ten steps",
+    "passed": true,
+    "discarded_vla_actions": 8,
+    "resumed_at": 42,
+    "recovery_steps": 10,
+    "fresh_inference_steps": [
+      0,
+      10,
+      20,
+      30,
+      42,
+      52
+    ]
+  },
+  "loop": {
+    "reason": "step_budget",
+    "steps": 60,
+    "vla_calls": 6,
+    "interventions": 1,
+    "executed_steps": {
+      "vla": 50,
+      "mock": 10,
+      "gpt": 0
+    },
+    "recovery_mode": "mock",
+    "complete": false,
+    "native_success": false,
+    "elapsed_seconds": 85.37814423441887
+  },
+  "request_snapshot_sha256": "7b867b4855c8b93c3117454d59c64c42b374b4a169edc2f95dd20b419b63cbf8",
+  "offline_export_identical": true,
+  "actual_eef_displacement_m": [
+    [
+      4.172325134277344e-07,
+      -2.086162567138672e-07,
+      0.0009871125221252441
+    ],
+    [
+      -2.384185791015625e-07,
+      -2.384185791015625e-07,
+      0.000987231731414795
+    ]
+  ],
+  "checkpoint": "gs://openpi-assets/checkpoints/pi05_base",
+  "scope": "Local fixed structured response executed through bounded IK; no learned recovery or successful-demo claim"
+}

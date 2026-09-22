@@ -2,16 +2,18 @@
 
 Runs the real pi05, Wan, RSI and RoboDojo. Overrides the alarm bit at one known
 step solely to test native command ownership. Raw scores and natural alarm bits
-are retained. No GPT call is made; mock recovery is a three-step joint hold.
+are retained. No external GPT call is made. Default recovery is a three-step
+joint hold; --video-fixture tests a local structured response and bounded IK.
 """
 import argparse
+from contextlib import ExitStack
 import json
 from pathlib import Path
 import sys
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from rsi_loop.cli import evaluate
+from rsi_loop.cli import evaluate, resources
 from rsi_loop.monitor import CausalMonitor
 
 
@@ -21,6 +23,7 @@ def main():
     p.add_argument("--resources", default="resources.local.json")
     p.add_argument("--config", default="configs/loop.toml")
     p.add_argument("--at-step", type=int, default=32)
+    p.add_argument("--video-fixture", help="Enable loopback HTTP → JSON → IK → native execution; this video is not called a success demo")
     args = p.parse_args()
     if args.at_step < 1:
         raise ValueError("Inject after the first VLA inference")
@@ -37,25 +40,44 @@ def main():
         raise FileExistsError(output)
     record = dict(test_only=True, api_calls=0, injected_step=args.at_step,
                   purpose="native command handoff, not detection accuracy or recovery skill")
+    duration = 3
     try:
-        with patch.object(CausalMonitor, "observe", test_observe):
+        with ExitStack() as stack:
+            stack.enter_context(patch.object(CausalMonitor, "observe", test_observe))
+            structured = None
+            if args.video_fixture:
+                from local_recovery_test import LocalStructuredRecovery
+                structured = stack.enter_context(LocalStructuredRecovery(output, resources(args.resources), args.video_fixture))
+                stack.enter_context(patch("rsi_loop.recovery.MockRecovery", structured.factory))
+                duration = structured.duration
             evaluate(args)
+            if structured is not None:
+                assert len(structured.received) == 1
+                body = structured.received[0]
+                content = body["input"][0]["content"]
+                assert body["model"] == "LOCAL_STUB_NOT_GPT" and body["store"] is False
+                image_count = sum(p["type"] == "input_image" for p in content)
+                assert image_count == 14  # eight video frames, three past views, three current cameras
+                saved = json.loads((output/"recovery"/f"request_{args.at_step:06d}.json").read_text())
+                assert all(body[key] == value for key, value in saved.items())
+                record.update(structured_loopback_requests=1, context_images=image_count,
+                              video_fixture_is_success_demo=False, motion="both arms 1 mm upward over ten steps")
         events = [json.loads(line) for line in (output/"events.jsonl").read_text().splitlines()]
         by_step = {event["step"]: event for event in events}
         start = by_step[args.at_step]
         assert start["source"] == "mock" and start["handoff"]["to"] == "mock"
-        assert all(by_step[args.at_step+i]["source"] == "mock" for i in range(3))
-        resumed = by_step[args.at_step+3]
+        assert all(by_step[args.at_step+i]["source"] == "mock" for i in range(duration))
+        resumed = by_step[args.at_step+duration]
         assert resumed["source"] == "vla" and resumed["handoff"]["to"] == "vla"
         import numpy as np
         inferred_at = []
         for file in sorted((output/"vla").glob("chunk_*.npz")):
             with np.load(file) as values:
                 inferred_at.append(int(values["observation_step"]))
-        assert args.at_step+3 in inferred_at
+        assert args.at_step+duration in inferred_at
         assert all(e["acknowledged"] and e["next_step"] == e["step"]+1 for e in events)
         record.update(passed=True, discarded_vla_actions=start["discarded_vla_actions"],
-                      resumed_at=args.at_step+3, fresh_inference_steps=inferred_at)
+                      resumed_at=args.at_step+duration, recovery_steps=duration, fresh_inference_steps=inferred_at)
     finally:
         if output.exists():
             (output/"control_test.json").write_text(json.dumps(record, indent=2))

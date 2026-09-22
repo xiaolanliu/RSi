@@ -1,4 +1,4 @@
-"""Load official JAX pi05_base without importing OpenPI training/data loaders."""
+"""Load explicitly identified JAX pi05 parameters without training/data imports."""
 import argparse
 import hashlib
 import json
@@ -22,7 +22,7 @@ def load_policy(checkpoint, norm_asset="arx", seed=0, norm_stats=None):
 
     checkpoint = Path(checkpoint)
     if not (checkpoint / "params").is_dir():
-        raise ValueError("Expected original pi05_base Orbax params, not a substituted tuned model")
+        raise ValueError("Expected a complete Orbax params directory")
     norm = load(Path(norm_stats) if norm_stats else checkpoint / "assets" / norm_asset)
     cfg = Pi0Config(pi05=True)
     model = cfg.load(restore_params(checkpoint / "params", dtype=jnp.bfloat16))
@@ -43,18 +43,31 @@ def load_policy(checkpoint, norm_asset="arx", seed=0, norm_stats=None):
 
 
 class Session:
-    def __init__(self, checkpoint, norm_asset, output, seed, norm_stats=None):
+    def __init__(self, checkpoint, norm_asset, output, seed, norm_stats=None, kind="base"):
+        identity_file = Path(__file__).resolve().parents[1]/"configs"/f"pi05_{kind}_identity.json"
+        identity = json.loads(identity_file.read_text())
+        # The OCDBT root and tensor metadata bind the referenced shard names.
+        # Full shard SHA256 checks are performed by fetch_checkpoint or
+        # doctor --hashes for both identities.
+        for item in identity["files"]:
+            file = Path(checkpoint)/item["path"]
+            if not file.is_file() or file.stat().st_size != item["size"]:
+                raise ValueError(f"Incomplete or wrong {kind} checkpoint: {item['path']}")
+            if item["size"] < 1_000_000 and hashlib.sha256(file.read_bytes()).hexdigest() != item["sha256"]:
+                raise ValueError(f"Wrong {kind} checkpoint metadata: {item['path']}")
         self.policy = load_policy(checkpoint, norm_asset, seed, norm_stats)
         self.output = Path(output)
         self.output.mkdir(parents=True, exist_ok=True)
         self.calls = 0
         normalization_file = (Path(norm_stats) if norm_stats else Path(checkpoint)/"assets"/norm_asset)/"norm_stats.json"
-        self.metadata = dict(checkpoint=str(checkpoint), source="gs://openpi-assets/checkpoints/pi05_base",
+        source = "gs://openpi-assets/checkpoints/pi05_base" if kind == "base" else identity["source"]+"/tree/master/"+identity["root"]
+        self.metadata = dict(checkpoint=str(checkpoint), source=source, checkpoint_kind=kind,
+                             identity_manifest_sha256=hashlib.sha256(identity_file.read_bytes()).hexdigest(),
                              normalization_asset=norm_asset, normalization_path=norm_stats,
                              normalization_sha256=hashlib.sha256(normalization_file.read_bytes()).hexdigest(),
                              action_horizon=50, action_dim=14,
                              output="absolute_joint_targets_with_absolute_grippers",
-                             benchmark_finetuned=False)
+                             benchmark_finetuned=kind == "demo", role="default_control" if kind == "base" else "demonstration_collection")
         (self.output / "vla_metadata.json").write_text(json.dumps(self.metadata, indent=2))
 
     def dispatch(self, op, args):
@@ -87,10 +100,11 @@ def main():
     p.add_argument("--checkpoint", required=True)
     p.add_argument("--norm-asset", default="arx")
     p.add_argument("--norm-stats")
+    p.add_argument("--kind", choices=("base", "demo"), default="base")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--output", required=True)
     a = p.parse_args()
-    session = Session(a.checkpoint, a.norm_asset, a.output, a.seed, a.norm_stats)
+    session = Session(a.checkpoint, a.norm_asset, a.output, a.seed, a.norm_stats, a.kind)
     serve(a.socket, session.dispatch)
 
 

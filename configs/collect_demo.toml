@@ -1,0 +1,32 @@
+# Independent demonstration collection with the official benchmark-tuned pi05.
+# Resource paths live in ignored resources.local.json; no credentials here.
+task = "fold_clothes"
+vla_checkpoint_kind = "demo"
+eval_seed = 0
+layout_id = 0
+vla_gpu = 0
+sim_gpu = 1
+vision_device = "cuda:1"
+monitor_device = "cpu"
+norm_asset = "arx_x5_sim"
+# Equivalent two-finger travel: 2 * (0.044 - (-0.010)) m from X5 config.
+# This is an estimated stroke mapping, not a measured real/sim aperture match.
+gripper_open_width_m = [0.108, 0.108]
+
+[loop]
+vla_execute_steps = 10
+max_recovery_steps = 25
+cooldown_steps = 25
+clear_steps_to_rearm = 5
+max_interventions = 5
+max_steps = 1500
+recovery_mode = "disabled"
+
+[gpt]
+enabled = false
+model = ""
+base_url = "https://api.openai.com/v1"
+key_env = "RSI_SIM_OPENAI_API_KEY"
+timeout = 60
+# demo_mp4 = "/absolute/path/to/early_success.mp4"
+# system_prompt_file = "/absolute/path/to/SYSTEM_PROMPT.txt"
